@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tturpin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 09:59:33 by tturpin           #+#    #+#             */
-/*   Updated: 2023/11/08 10:04:41 by tturpin          ###   ########.fr       */
+/*   Created: 2023/11/07 11:47:26 by tturpin           #+#    #+#             */
+/*   Updated: 2023/11/10 15:44:18 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+char	*ft_strnstr(const char *src, const char *to_find, size_t max)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - 32);
-	return (c);
+	size_t	i;
+	size_t	j;
+	char	*s1;
+
+	i = 0;
+	s1 = (char *)src;
+	if (*to_find == '\0')
+		return (s1);
+	while (src[i] && i < max)
+	{
+		if (src[i] == to_find[0])
+		{
+			j = 0;
+			while (src[i + j] == to_find[j] && to_find[j])
+				j++;
+			if (to_find[j] == 0)
+				return (&s1[i]);
+		}
+		i++;
+	}
+	return (0);
 }
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	char	a;
-
-	a  = 'a';
-	printf("%c\n", ft_toupper(a));
-}*/

@@ -6,7 +6,7 @@
 /*   By: tturpin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:24:34 by tturpin           #+#    #+#             */
-/*   Updated: 2023/11/07 10:06:06 by tturpin          ###   ########.fr       */
+/*   Updated: 2023/11/10 12:19:52 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	ft_bzero(void *s, size_t len)
 {
 	char	*str;
-	int		i;
+	size_t	i;
 
-	str = s;
+	str = (char *)s;
 	i = 0;
-	while (i++ < len)
+	while (i < len)
 	{
-		*str = 0;
-		str++;
+		str[i] = 0;
+		i++;
 	}
 }

@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tturpin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 09:36:14 by tturpin           #+#    #+#             */
-/*   Updated: 2023/11/07 09:45:00 by tturpin          ###   ########.fr       */
+/*   Created: 2023/11/08 16:33:01 by tturpin           #+#    #+#             */
+/*   Updated: 2023/11/10 12:21:43 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-#define LIBFT_H
+#include "libft.h"
 
-#include <stdlib.h>
+size_t	ft_strlen(const char *str)
+{
+	int	i;
 
-void    *ft_memcpy(void *dest, const void *src, size_t size);
-void    *memset(void *c, int val, size_t len);
-int     ft_isalpha(int c);
-int     ft_isalnum(int c);
-int     ft_isdigit(int c);
-int     ft_isprint(int c);
-int     ft_isascii(int c);
-int     ft_strlen(char *str);
-void    ft_bzero(void *s, size_t len);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
 
-#endif
+char	*ft_strdup(const char *src)
+{
+	char	*mall;
+	int		j;
+
+	mall = (char *)malloc(sizeof(char) * ft_strlen(src) + 1);
+	j = 0;
+	if (!mall)
+		return (NULL);
+	while (src[j])
+	{
+		mall[j] = src[j];
+		j++;
+	}
+	mall[j] = '\0';
+	return (mall);
+}

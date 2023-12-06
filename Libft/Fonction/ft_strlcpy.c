@@ -1,30 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tturpin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 09:59:33 by tturpin           #+#    #+#             */
-/*   Updated: 2023/11/08 10:04:41 by tturpin          ###   ########.fr       */
+/*   Created: 2023/11/07 11:42:24 by tturpin           #+#    #+#             */
+/*   Updated: 2023/11/08 13:01:23 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - 32);
-	return (c);
+	size_t	i;
+
+	i = 0;
+	if (!dest || !src)
+		return (0);
+	if (size > 0)
+	{
+		while (src[i] && --size)
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
+	}
+	while (src[i])
+		i++;
+	return (i);
 }
 /*
+#include <bsd/string.h>
 #include <stdio.h>
 
 int	main(void)
 {
-	char	a;
+	char	src[] = "asdfghjklpoiuytrewq";
+	char	dest[6];
 
-	a  = 'a';
-	printf("%c\n", ft_toupper(a));
+	printf("%zu\n", ft_strlcpy(dest, src, 10));
+	return (0);
 }*/

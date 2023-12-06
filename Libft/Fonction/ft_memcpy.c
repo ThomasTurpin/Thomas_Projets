@@ -6,7 +6,7 @@
 /*   By: tturpin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:25:59 by tturpin           #+#    #+#             */
-/*   Updated: 2023/11/07 09:35:04 by tturpin          ###   ########.fr       */
+/*   Updated: 2023/11/08 13:16:24 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t size)
 	str = (char *)dest;
 	while (i < size)
 	{
-		*(char *)str = *(char *)src;
+		*str = *(char *)src;
 		str++;
 		src++;
 		i++;
@@ -37,7 +37,7 @@ int	main(void)
 	char	dest[10];
 	char	*result;
 
-	result = ft_memcpy(dest, src, 1);
+	result = ft_memcpy(dest, src, 5);
 	printf("%s\n", result);
 	return (0);
 }*/

@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tturpin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 09:59:33 by tturpin           #+#    #+#             */
-/*   Updated: 2023/11/08 10:04:41 by tturpin          ###   ########.fr       */
+/*   Created: 2023/11/09 09:11:03 by tturpin           #+#    #+#             */
+/*   Updated: 2023/11/10 15:43:22 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+char	*ft_substr(char const *src, unsigned int start, size_t len)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - 32);
-	return (c);
+	char	*new;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	new = (char *)malloc(sizeof(*src) * (len + 1));
+	if (!new)
+		return (NULL);
+	while (src[i])
+	{
+		if (i >= start && j < len)
+		{
+			new[j] = src[i];
+			j++;
+		}
+		i++;
+	}
+	new[j] = 0;
+	return (new);
 }
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	char	a;
-
-	a  = 'a';
-	printf("%c\n", ft_toupper(a));
-}*/
