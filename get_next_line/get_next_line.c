@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tturpin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:05:47 by tturpin           #+#    #+#             */
-/*   Updated: 2023/12/05 14:41:51 by tturpin          ###   ########.fr       */
+/*   Updated: 2023/12/23 13:31:51 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,3 @@ char	*get_next_line(int fd)
 	save = clean(line);
 	return (line);
 }
-
-
