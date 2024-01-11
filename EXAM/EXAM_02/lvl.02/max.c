@@ -2,7 +2,7 @@
 
 int	max(int *tab, unsigned int len)
 {
-	unsigned int	result;
+	int	result;
 	unsigned int	i;
 
 	if (len == 0)
