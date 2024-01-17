@@ -20,9 +20,9 @@ int	main(int argc, char **argv)
 		while (argv[1][i] != '\0')
 		{
 			if (argv[1][i] >= 'a' && argv[1][i] >= 'z')
-				ft_putchar_n(argv[1][i], argv[1][i] - 'a');
+				ft_putchar_n(argv[1][i], argv[1][i] - 'a' + 1);
 			else if (argv[1][i] >= 'A' && argv[1][i] >= 'Z')
-				ft_putchar_n(argv[1][i], argv[1][i] - 'A');
+				ft_putchar_n(argv[1][i], argv[1][i] - 'A' + 1);
 			else
 				write(1, &argv[1][i], 1);
 			i++;
