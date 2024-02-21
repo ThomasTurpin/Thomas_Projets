@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:08:15 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/15 16:40:03 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/21 14:06:05 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char **argv)
 {
 	t_stack_node	*a;
 	t_stack_node	*b;
-	int				stack_size;
 
 	a = NULL;
 	b = NULL;
@@ -34,10 +33,20 @@ int	main(int argc, char **argv)
 		return (0);
 	if (argc == 2)
 		argv = ft_split(argv[1], ' ');
-	if (!check_input(argv))
-		error(NULL, NULL);
+	if (!check_input(argv + 1))
+		error_free(&a);
 	create_stack(&a, argv + 1);
-	stack_size = get_stack_size(a);
-	sort_choose(&a, &b, stack_size);
-	print_stack(a);
+	if (!is_sorted(a))
+	{
+		if (get_stack_size(a) == 2)
+			do_sa(&a);
+		else if (get_stack_size(a) == 3)
+			tiny_sort(&a);
+		else
+			push_swap(&a, &b);
+	}
+	// print_stack(a);
+	// print_stack(b);
+	free_stack(&a);
+	free_stack(&b);
 }

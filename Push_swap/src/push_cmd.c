@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:29:37 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/07 10:26:59 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/21 12:51:34 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ static void	push(t_stack_node **src, t_stack_node **dest)
 	*src = tmp;
 }
 
-void	do_pa(t_stack_node **a, t_stack_node **b)
+void	do_pa(t_stack_node **src, t_stack_node **dest)
 {
-	push(b, a);
+	push(src, dest);
 	ft_putstr("pa\n");
 }
 
-void	do_pb(t_stack_node **a, t_stack_node **b)
+void	do_pb(t_stack_node **src, t_stack_node **dest)
 {
-	push(a, b);
+	push(src, dest);
 	ft_putstr("pb\n");
 }

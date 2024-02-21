@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   sort_choose.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:10:42 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/15 12:41:31 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/20 16:36:31 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	tiny_sort(t_stack_node **a)
 		do_sa(a);
 }
 
-void	sort_choose(t_stack_node **a, t_stack_node **b, int stack_size)
+void	nb_five(t_stack_node **a, t_stack_node **b)
 {
-	if (stack_size == 3 && !(is_sorted(*a)))
-		tiny_sort(a);
-	if (stack_size > 5 && !(is_sorted(*a)))
+	while (get_stack_size(*a) > 3)
 	{
-		push_swap(a, b);
+		init_all(*a, *b);
+		rotate_one(a, find_smallest(*a), 'a');
+		do_pb(a, b);
 	}
 }

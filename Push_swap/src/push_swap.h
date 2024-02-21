@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:31:01 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/15 14:14:30 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/21 12:50:12 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,12 @@ t_stack_node			*find_last_node(t_stack_node *head);
 void					append_node(t_stack_node **stack, int nbr);
 void					create_stack(t_stack_node **a, char **argv);
 t_stack_node			*return_cheapest(t_stack_node *stack);
+void					print_stack(t_stack_node *top);
+void					free_stack(t_stack_node **stack);
+void					error_free(t_stack_node **a);
+
 void					ft_putstr(char *str);
-int						ft_atoi(const char *str);
+long					ft_atol(const char *str);
 char					**ft_split(char const *s, char c);
 size_t					ft_strlen(const char *str);
 size_t					ft_strlcpy(char *dest, const char *src, size_t size);
@@ -44,8 +48,8 @@ void					set_cost(t_stack_node *a, t_stack_node *b);
 void					find_cheapest(t_stack_node *b);
 void					set_position(t_stack_node *stack);
 
-void					do_pa(t_stack_node **a, t_stack_node **b);
-void					do_pb(t_stack_node **a, t_stack_node **b);
+void					do_pa(t_stack_node **src, t_stack_node **dest);
+void					do_pb(t_stack_node **src, t_stack_node **dest);
 void					do_rra(t_stack_node **a);
 void					do_rrb(t_stack_node **b);
 void					do_rrr(t_stack_node **a, t_stack_node **b);
@@ -78,11 +82,9 @@ int						argv_number(char *argv);
 int						duplicates(char **argv);
 int						only_zero(char *argv);
 int						check_input(char **argv);
-void					error(t_stack_node **a, t_stack_node **b);
 
 void					tiny_sort(t_stack_node **a);
+void					nb_five(t_stack_node **a, t_stack_node **b);
 int						is_sorted(t_stack_node *stack);
-void					sort_choose(t_stack_node **a, t_stack_node **b,
-							int stack_size);
 
 #endif
