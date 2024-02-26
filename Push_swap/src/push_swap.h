@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:31:01 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/26 15:03:37 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/26 15:42:03 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_stack_node			*return_cheapest(t_stack_node *stack);
 void					print_stack(t_stack_node *top);
 void					free_stack(t_stack_node **stack);
 void					error_free(t_stack_node **a);
+char					**ft_free_mal(char **tab);
 
 void					ft_putstr(char *str);
 long					ft_atol(const char *str);

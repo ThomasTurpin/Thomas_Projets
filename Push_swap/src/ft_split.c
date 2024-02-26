@@ -6,13 +6,13 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:55:33 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/13 10:23:22 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/26 15:41:08 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static char	**ft_free_mal(char **tab)
+char	**ft_free_mal(char **tab)
 {
 	size_t	i;
 
