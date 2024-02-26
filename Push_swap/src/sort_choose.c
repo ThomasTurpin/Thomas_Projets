@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:10:42 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/20 16:36:31 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/26 15:01:32 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void	nb_five(t_stack_node **a, t_stack_node **b)
 	{
 		init_all(*a, *b);
 		rotate_one(a, find_smallest(*a), 'a');
-		do_pb(a, b);
+		do_pb(b, a);
 	}
 }

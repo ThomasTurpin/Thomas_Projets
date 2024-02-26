@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:29:10 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/15 12:40:11 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/21 15:24:56 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ t_stack_node	*find_highest(t_stack_node *stack)
 
 t_stack_node	*find_smallest(t_stack_node *stack)
 {
-	int				smallest;
+	long			smallest;
 	t_stack_node	*smallest_node;
 
 	if (stack == NULL)
 		return (NULL);
-	smallest = INT_MAX;
+	smallest = LONG_MAX;
 	while (stack)
 	{
 		if (stack->value < smallest)

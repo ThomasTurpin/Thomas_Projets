@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:31:01 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/21 12:50:12 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/26 15:03:37 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void					set_cost(t_stack_node *a, t_stack_node *b);
 void					find_cheapest(t_stack_node *b);
 void					set_position(t_stack_node *stack);
 
-void					do_pa(t_stack_node **src, t_stack_node **dest);
-void					do_pb(t_stack_node **src, t_stack_node **dest);
+void					do_pa(t_stack_node **a, t_stack_node **b);
+void					do_pb(t_stack_node **b, t_stack_node **a);
 void					do_rra(t_stack_node **a);
 void					do_rrb(t_stack_node **b);
 void					do_rrr(t_stack_node **a, t_stack_node **b);

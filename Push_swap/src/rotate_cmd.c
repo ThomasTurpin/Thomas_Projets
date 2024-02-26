@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:29:26 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/15 12:19:26 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/26 14:53:35 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 static void	rotate(t_stack_node **stack)
 {
-	t_stack_node	*tmp;
-	t_stack_node	*tail;
+	t_stack_node	*last_node;
+	int				len;
 
-	tmp = *stack;
+	len = get_stack_size(*stack);
+	if (NULL == stack || NULL == *stack || 1 == len)
+		return ;
+	last_node = find_last_node(*stack);
+	last_node->next = *stack;
 	*stack = (*stack)->next;
-	tail = find_last_node(*stack);
-	tmp->next = NULL;
-	tail->next = tmp;
+	(*stack)->prev = NULL;
+	last_node->next->prev = last_node;
+	last_node->next->next = NULL;
 }
 
 void	do_ra(t_stack_node **a)

@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 08:46:29 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/21 08:23:19 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/26 10:42:33 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	set_position(t_stack_node *stack)
 		else
 			stack->above_median = false;
 		stack = stack->next;
-		++i;
+		i++;
 	}
 }
 
@@ -73,7 +73,7 @@ void	set_cost(t_stack_node *a, t_stack_node *b)
 		b->push_price = b->position;
 		if (!(b->above_median))
 			b->push_price = len_b - (b->position);
-		else if (b->target_node->above_median)
+		if (b->target_node->above_median)
 			b->push_price += b->target_node->position;
 		else
 			b->push_price += len_a - (b->target_node->position);
