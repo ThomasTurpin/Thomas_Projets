@@ -6,16 +6,14 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:29:10 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/27 10:32:32 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/21 15:24:56 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sorted(t_stack_node *stack, int *argc)
+int	is_sorted(t_stack_node *stack)
 {
-	if (*argc == 2 && stack->next == NULL)
-		return (1);
 	while (stack->next != NULL)
 	{
 		if (stack->value > stack->next->value)

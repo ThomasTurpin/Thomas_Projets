@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:29:16 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/27 17:36:05 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/19 15:31:27 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,20 @@ void	append_node(t_stack_node **stack, int nbr )
 		last_node->next = node;
 		node->prev = last_node;
 	}
+
 }
 
 void	create_stack(t_stack_node **a, char **argv)
 {
-	long	nbr;
+	int	nbr;
 	int	i;
 
 	i = 0;
 	while (argv[i])
 	{
 		nbr = ft_atol(argv[i]);
-		if (nbr > INT_MAX || nbr < INT_MIN)
-			error_free(a);
 		append_node(a, (int)nbr);
 		i++;
+
 	}
-	if (i < 1)
-		exit (0);
 }

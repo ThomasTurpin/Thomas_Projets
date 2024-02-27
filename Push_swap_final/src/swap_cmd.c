@@ -1,37 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   swap_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 14:33:47 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/27 16:49:42 by tturpin          ###   ########.fr       */
+/*   Created: 2024/01/29 15:29:21 by tturpin           #+#    #+#             */
+/*   Updated: 2024/02/14 12:01:53 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_stack(t_stack_node **stack)
+static void	swap(t_stack_node *stack)
 {
-	t_stack_node	*tmp;
-	t_stack_node	*current;
+	int	tmp;
 
-	if (NULL == stack)
+	if (stack == NULL || stack->next == NULL)
 		return ;
-	current = *stack;
-	while (current)
-	{
-		tmp = current->next;
-		free(current);
-		current = tmp;
-	}
-	*stack = NULL;
+	tmp = stack->value;
+	stack->value = stack->next->value;
+	stack->next->value = tmp;
 }
 
-void	error_free(t_stack_node **a)
+void	do_sa(t_stack_node **a)
 {
-	free_stack(a);
-	write(2, "Error\n", 6);
-	exit(1);
+	swap(*a);
+	ft_putstr("sa\n");
+}
+
+void	do_sb(t_stack_node **b)
+{
+	swap(*b);
+	ft_putstr("sb\n");
+}
+
+void	do_ss(t_stack_node **a, t_stack_node **b)
+{
+	swap(*a);
+	swap(*b);
+	ft_putstr("ss\n");
 }

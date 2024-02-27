@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:11:56 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/27 16:49:28 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/27 07:38:21 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	argv_number(char *argv)
 		return (0);
 	return (1);
 }
+
 
 int	duplicates(char **argv)
 {

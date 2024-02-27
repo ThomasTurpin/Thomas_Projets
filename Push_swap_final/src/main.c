@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:08:15 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/27 16:50:09 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/27 07:47:01 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	main(int argc, char **argv)
 		return (0);
 	if (argc == 2)
 		argv = ft_split(argv[1], ' ');
-	if (!check_input(argv))
+	if (!check_input(argv + 1))
 		error_free(&a);
 	create_stack(&a, argv + 1);
-	if (!is_sorted(a, &argc))
+	if (!is_sorted(a))
 	{
 		if (get_stack_size(a) == 2)
 			do_sa(&a);

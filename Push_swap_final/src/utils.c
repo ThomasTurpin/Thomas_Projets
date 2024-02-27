@@ -6,11 +6,12 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:26:09 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/27 08:15:19 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/26 15:41:38 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 
 void	ft_putstr(char *str)
 {
@@ -46,6 +47,7 @@ long	ft_atol(const char *str)
 	}
 	return (res * negative);
 }
+
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
