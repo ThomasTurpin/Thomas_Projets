@@ -6,21 +6,11 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:08:15 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/27 16:50:09 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/27 18:02:20 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
-
-void	print_stack(t_stack_node *top)
-{
-	while (top != NULL)
-	{
-		printf("%d\n", top->value);
-		top = top->next;
-	}
-}
 
 int	main(int argc, char **argv)
 {
