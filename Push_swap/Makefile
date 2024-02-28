@@ -6,7 +6,7 @@
 #    By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/16 11:35:08 by tturpin           #+#    #+#              #
-#    Updated: 2024/02/27 18:04:26 by tturpin          ###   ########.fr        #
+#    Updated: 2024/02/28 17:15:13 by tturpin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ $(OBJ_PATH):
 	mkdir $(OBJ_PATH)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	$(CC) $(CFLAGS) -c $< -o $@ $(HEAD)
+	$(CC) $(CFLAGS) -g3 -c $< -o $@ $(HEAD)
 
 
 $(NAME): $(OBJS)

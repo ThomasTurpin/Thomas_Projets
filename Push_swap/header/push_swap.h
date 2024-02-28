@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:31:01 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/27 16:50:03 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/28 17:14:48 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,17 @@ typedef struct s_stack_node
 
 t_stack_node			*find_last_node(t_stack_node *head);
 void					append_node(t_stack_node **stack, int nbr);
-void					create_stack(t_stack_node **a, char **argv);
+void					create_stack(t_stack_node **a, char **argv, int argc);
 t_stack_node			*return_cheapest(t_stack_node *stack);
 void					print_stack(t_stack_node *top);
 void					free_stack(t_stack_node **stack);
-void					error_free(t_stack_node **a);
-char					**ft_free_mal(char **tab);
+void					error_free(t_stack_node **a, char **argv, int argc);
+void					free_final(t_stack_node **a, t_stack_node **b,
+							char **argv, int argc);
 
 void					ft_putstr(char *str);
 long					ft_atol(const char *str);
-char					**ft_split(char const *s, char c);
+char					**ft_split(char *str, char separator);
 size_t					ft_strlen(const char *str);
 size_t					ft_strlcpy(char *dest, const char *src, size_t size);
 
