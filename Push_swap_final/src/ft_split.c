@@ -6,95 +6,83 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:55:33 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/26 15:41:08 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/28 17:15:00 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	**ft_free_mal(char **tab)
+static int	count_words(char *str, char separator)
 {
-	size_t	i;
+	int		count;
+	bool	inside_word;
 
-	i = 0;
-	while (tab[i])
+	count = 0;
+	while (*str)
 	{
-		free(tab[i]);
-		i++;
+		inside_word = false;
+		while (*str == separator && *str)
+			++str;
+		while (*str != separator && *str)
+		{
+			if (!inside_word)
+			{
+				++count;
+				inside_word = true;
+			}
+			++str;
+		}
 	}
-	free(tab);
-	return (NULL);
+	return (count);
 }
 
-static size_t	ft_nb_words(char const *s, char c)
+static char	*get_next_word(char *str, char separator)
 {
-	size_t	i;
-	size_t	nb_words;
+	static int	cursor = 0;
+	char		*next_str;
+	int			len;
+	int			i;
 
-	if (!s[0])
-		return (0);
+	len = 0;
 	i = 0;
-	nb_words = 0;
-	while (s[i] && s[i] == c)
-		i++;
-	while (s[i])
+	while (str[cursor] == separator)
+		++cursor;
+	while ((str[cursor + len] != separator) && str[cursor + len])
+		++len;
+	next_str = malloc((size_t)len * sizeof(char) + 1);
+	if (NULL == next_str)
+		return (NULL);
+	while ((str[cursor] != separator) && str[cursor])
+		next_str[i++] = str[cursor++];
+	next_str[i] = '\0';
+	return (next_str);
+}
+
+char	**ft_split(char *str, char separator)
+{
+	int		words_number;
+	char	**vector_strings;
+	int		i;
+
+	i = 0;
+	words_number = count_words(str, separator);
+	if (!words_number)
+		exit(1);
+	vector_strings = malloc(sizeof(char *) * (size_t)(words_number + 2));
+	if (NULL == vector_strings)
+		return (NULL);
+	while (words_number-- >= 0)
 	{
-		if (s[i] == c)
+		if (0 == i)
 		{
-			nb_words++;
-			while (s[i] && s[i] == c)
-				i++;
+			vector_strings[i] = malloc(sizeof(char));
+			if (NULL == vector_strings[i])
+				return (NULL);
+			vector_strings[i++][0] = '\0';
 			continue ;
 		}
-		i++;
+		vector_strings[i++] = get_next_word(str, separator);
 	}
-	if (s[i - 1] != c)
-		nb_words++;
-	return (nb_words);
-}
-
-static void	ft_get_next_word(char **next_word, size_t *next_word_len, char c)
-{
-	size_t	i;
-
-	*next_word += *next_word_len;
-	*next_word_len = 0;
-	i = 0;
-	while (**next_word && **next_word == c)
-		(*next_word)++;
-	while ((*next_word)[i])
-	{
-		if ((*next_word)[i] == c)
-			return ;
-		(*next_word_len)++;
-		i++;
-	}
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**tab;
-	char	*next_word;
-	size_t	next_word_len;
-	size_t	i;
-
-	if (!s || !*s)
-		return (NULL);
-	tab = (char **)malloc(sizeof(char *) * (ft_nb_words(s, c) + 1));
-	if (!tab)
-		return (NULL);
-	i = 0;
-	next_word = (char *)s;
-	next_word_len = 0;
-	while (i < ft_nb_words(s, c))
-	{
-		ft_get_next_word(&next_word, &next_word_len, c);
-		tab[i] = (char *)malloc(sizeof(char) * (next_word_len + 1));
-		if (!tab[i])
-			return (ft_free_mal(tab));
-		ft_strlcpy(tab[i], next_word, next_word_len + 1);
-		i++;
-	}
-	tab[i] = NULL;
-	return (tab);
+	vector_strings[i] = NULL;
+	return (vector_strings);
 }

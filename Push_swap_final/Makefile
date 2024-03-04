@@ -6,7 +6,7 @@
 #    By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/16 11:35:08 by tturpin           #+#    #+#              #
-#    Updated: 2024/02/27 07:39:31 by tturpin          ###   ########.fr        #
+#    Updated: 2024/02/28 17:15:13 by tturpin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC_PATH = src/
 OBJ_PATH = obj/
 
 SRC		= main.c check_input.c check_input_utils.c create_stack.c stack_utils.c \
-swap_cmd.c push_cmd.c rotate_cmd.c reverse_rotate_cmd.c sort_utils.c sort_choose.c ft_split.c \
+swap_cmd.c push_cmd.c rotate_cmd.c reverse_rotate_cmd.c sort_utils.c ft_split.c \
 utils.c error.c algo_utils.c algo.c
 
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
@@ -32,7 +32,7 @@ $(OBJ_PATH):
 	mkdir $(OBJ_PATH)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	$(CC) $(CFLAGS) -c $< -o $@ $(HEAD)
+	$(CC) $(CFLAGS) -g3 -c $< -o $@ $(HEAD)
 
 
 $(NAME): $(OBJS)

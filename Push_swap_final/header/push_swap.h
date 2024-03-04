@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:31:01 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/26 15:42:03 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/02/28 17:14:48 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,20 @@ typedef struct s_stack_node
 
 t_stack_node			*find_last_node(t_stack_node *head);
 void					append_node(t_stack_node **stack, int nbr);
-void					create_stack(t_stack_node **a, char **argv);
+void					create_stack(t_stack_node **a, char **argv, int argc);
 t_stack_node			*return_cheapest(t_stack_node *stack);
 void					print_stack(t_stack_node *top);
 void					free_stack(t_stack_node **stack);
-void					error_free(t_stack_node **a);
-char					**ft_free_mal(char **tab);
+void					error_free(t_stack_node **a, char **argv, int argc);
+void					free_final(t_stack_node **a, t_stack_node **b,
+							char **argv, int argc);
 
 void					ft_putstr(char *str);
 long					ft_atol(const char *str);
-char					**ft_split(char const *s, char c);
+char					**ft_split(char *str, char separator);
 size_t					ft_strlen(const char *str);
 size_t					ft_strlcpy(char *dest, const char *src, size_t size);
+
 void					set_target(t_stack_node *a, t_stack_node *b);
 void					set_cost(t_stack_node *a, t_stack_node *b);
 void					find_cheapest(t_stack_node *b);
@@ -80,12 +82,12 @@ int						is_digit(char c);
 int						is_sign(char c);
 int						nb_cmp(const char *s1, const char *s2);
 int						argv_number(char *argv);
-int						duplicates(char **argv);
+int						repetition(t_stack_node *a, int nbr);
 int						only_zero(char *argv);
 int						check_input(char **argv);
 
 void					tiny_sort(t_stack_node **a);
 void					nb_five(t_stack_node **a, t_stack_node **b);
-int						is_sorted(t_stack_node *stack);
+int						is_sorted(t_stack_node *stack, int *argc);
 
 #endif
