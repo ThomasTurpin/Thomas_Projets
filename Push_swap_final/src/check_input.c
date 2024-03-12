@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:11:56 by tturpin           #+#    #+#             */
-/*   Updated: 2024/02/27 16:49:28 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/03/12 11:49:43 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	check_input(char **argv)
 	int	zero;
 
 	zero = 0;
-	i = 1;
+	i = 1;S
 	while (argv[i])
 	{
 		if (!argv_number(argv[i]))
