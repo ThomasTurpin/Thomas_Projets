@@ -6,13 +6,16 @@
 #    By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 16:59:36 by tturpin           #+#    #+#              #
-#    Updated: 2024/03/12 15:32:54 by tturpin          ###   ########.fr        #
+#    Updated: 2024/03/18 09:12:49 by tturpin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = cc
 FLAG = -Wall -Werror -Wextra
+
+LIBFT = ./Libft/libft.a
+LIBFTDIR = ./Libft
 
 MLX_FILE	=	libmlx.a
 MLX_FLAG	=	-lX11 -lXext
@@ -35,15 +38,23 @@ all: $(NAME)
 mlx:
 	make -sC $(MLX_PATH)
 
-$(NAME): mlx $(OBJ)
-	$(CC) $(OBJ) $(MLX_EX) -o $(NAME)
+$(LIBFT):
+	make bonus -C (LIBFTDIR)
+
+$(NAME): mlx $(OBJ) $(LIBFT)
+	$(CC) $(OBJ) $(LIBFT) $(MLX_EX) $(FLAG) -o $(NAME)
+
+$(LIBFT):
+	make bonus -C $(LIBFTDIR)
 
 clean:
 	make clean -sC $(MLX_PATH)
+	make clean -C $(LIBFTDIR)
 	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
+	make fclean -C $(LIBFTDIR)
 
 re: fclean all
 

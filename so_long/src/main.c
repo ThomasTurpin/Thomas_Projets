@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:59:28 by tturpin           #+#    #+#             */
-/*   Updated: 2024/03/12 14:22:23 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/03/18 07:49:58 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,13 @@ int	main(void)
 		i = 50;
 		while (i < 600)
 		{
-			mlx_put_image_to_window(vars.mlx, vars.win, img2, i, j);
+			if (j == 0)
+				mlx_put_image_to_window(vars.mlx, vars.win, img, i, j);
+			else
+				mlx_put_image_to_window(vars.mlx, vars.win, img2, i, j);
 			i += 50;
 		}
-		j+= 50;
+		j += 50;
 	}
 	mlx_hook(vars.win, 2, 1L<<0, close_win, &vars);
 	mlx_loop(vars.mlx);
