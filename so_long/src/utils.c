@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 16:59:28 by tturpin           #+#    #+#             */
-/*   Updated: 2024/03/20 16:08:09 by tturpin          ###   ########.fr       */
+/*   Created: 2024/03/18 12:53:13 by tturpin           #+#    #+#             */
+/*   Updated: 2024/03/18 16:43:57 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	close_win(int keycode)
+char	*ft_strappend(char **s1, const char *s2)
 {
-	if (keycode)
-		exit(0);
-	return (0);
-}
+	char	*str;
 
-int	main(int argc, char **argv)
-{
-	t_game	*game;
-
-	game = malloc (sizeof(t_game));
-	check_argv(argc, argv, game);
-	init_map(game, argv[1]);
-	param_init(game);
-	// ft_check_map(game);
-	ft_mlx_init(game);
-	init_sprite(game);
-	rendering_map(game);
-	mlx_loop(game->mlx);
-	return (0);
+	if (!*s1 || !s2)
+		return (NULL);
+	str = (char *)ft_calloc((ft_strlen(*s1) + ft_strlen(s2)) + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, *s1, ft_strlen(*s1) + 1);
+	ft_strlcat(str, s2, ft_strlen(*s1) + ft_strlen(s2) + 1);
+	free(*s1);
+	return (str);
 }

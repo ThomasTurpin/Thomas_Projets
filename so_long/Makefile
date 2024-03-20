@@ -6,7 +6,7 @@
 #    By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 16:59:36 by tturpin           #+#    #+#              #
-#    Updated: 2024/03/18 09:12:49 by tturpin          ###   ########.fr        #
+#    Updated: 2024/03/20 16:07:23 by tturpin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ MLX_PATH	=	./minilibx-linux/
 MLX_LIB		=	$(addprefix $(MLX_PATH), $(MLX_FILE))
 MLX_EX		=	$(MLX_LIB) $(MLX_FLAG)
 
-C_FILE		= main.c
+C_FILE		= main.c error_free.c map_check.c map_init.c utils.c init_game.c map_rendering.c
 SRC_DIR		=	./src/
 INC_DIR		=	./includes/
 SRC			=	$(addprefix $(SRC_DIR),$(C_FILE))
