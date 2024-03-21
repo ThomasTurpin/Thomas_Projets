@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:59:32 by tturpin           #+#    #+#             */
-/*   Updated: 2024/03/20 16:11:05 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/03/21 13:15:27 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,22 @@
 # define PLAYER 'P'
 # define EXIT 'E'
 
-# define WALL_XPM "../Sprite/wall2.xpm"
-# define GROUND_XPM "../Sprite/Ground.xpm"
-# define COLLECTABLE_XPM "../Sprite/collectable.xpm"
+# define ESC 65307
+# define W 119
+# define S 115
+# define A 97
+# define D 100
+
+# define WALL_XPM "./Sprite/wall2.xpm"
+# define GROUND_XPM "./Sprite/Ground.xpm"
+# define COLLECTABLE_XPM "./Sprite/collectable.xpm"
+# define PLAYER_XPM "./Sprite/player.xpm"
+
+typedef struct s_position
+{
+	int			y;
+	int			x;
+}				t_position;
 
 typedef struct s_sprite
 {
@@ -47,7 +60,8 @@ typedef struct s_map
 	int			columns;
 	int			collectible;
 	int			exit;
-	int			player;
+	int			players;
+	t_position	player_pos;
 }				t_map;
 
 typedef struct s_game
@@ -75,10 +89,15 @@ void			param_init(t_game *game);
 void			ft_check_map(t_game *game);
 void			ft_mlx_init(t_game *game);
 
-t_sprite		ft_new_sprite(void *mlx, char *path, t_game *game);
+t_sprite		ft_new_sprite(void *mlx, char *path);
 void			init_sprite(t_game *game);
 void			put_sprite(t_game *game, t_sprite sprite, int line, int column);
 void			which_sprite(t_game *game, int y, int x);
 int				rendering_map(t_game *game);
+
+int				close_win(int keycode);
+
+void			player_moove(t_game *game, int new_y, int new_x);
+int				input(int keycode, t_game *game);
 
 #endif

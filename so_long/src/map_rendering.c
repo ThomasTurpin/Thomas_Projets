@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:49:00 by tturpin           #+#    #+#             */
-/*   Updated: 2024/03/20 16:09:50 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/03/21 11:18:13 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	which_sprite(t_game *game, int y, int x)
 		put_sprite(game, game->ground, y, x);
 	if (map_full == COLLECT)
 		put_sprite(game, game->collect, y, x);
+	if (map_full == PLAYER)
+		put_sprite(game, game->player_sprite, y, x);
 }
 
 int	rendering_map(t_game *game)
