@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:17:06 by tturpin           #+#    #+#             */
-/*   Updated: 2024/03/21 11:14:50 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/03/25 10:39:45 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ void	ft_mlx_init(t_game *game)
 	}
 }
 
-t_sprite	ft_new_sprite(void *mlx, char *path)
+t_sprite	ft_new_sprite(void *mlx, char *path, t_game *game)
 {
 	t_sprite	sprite;
 
 	sprite.xpm = mlx_xpm_file_to_image(mlx, path, &sprite.x, &sprite.y);
-	// if (sprite.xpm == NULL)
-	// {
-	// 	msg_error("Sprite not find.", game);
-	// }
+	if (sprite.xpm == NULL)
+	{
+		msg_error("Sprite not find.", game);
+	}
 	return (sprite);
 }
 
@@ -55,8 +55,10 @@ void	init_sprite(t_game *game)
 	void	*mlx;
 
 	mlx = game->mlx;
-	game->ground = ft_new_sprite(mlx, GROUND_XPM);
-	game->wall = ft_new_sprite(mlx, WALL_XPM);
-	game->collect = ft_new_sprite(mlx, COLLECTABLE_XPM);
-	game->player_sprite = ft_new_sprite(mlx, PLAYER_XPM);
+	game->ground = ft_new_sprite(mlx, GROUND_XPM, game);
+	game->wall = ft_new_sprite(mlx, WALL_XPM, game);
+	game->collect = ft_new_sprite(mlx, COLLECTABLE_XPM, game);
+	game->player_sprite = ft_new_sprite(mlx, PLAYER_XPM, game);
+	game->exit_cl = ft_new_sprite (mlx, EXIT_CLOSE_XPM, game);
+	game->exit_op = ft_new_sprite (mlx, EXIT_OPEN_XPM, game);
 }

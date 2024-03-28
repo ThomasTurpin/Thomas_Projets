@@ -6,7 +6,7 @@
 #    By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 16:59:36 by tturpin           #+#    #+#              #
-#    Updated: 2024/03/21 11:32:19 by tturpin          ###   ########.fr        #
+#    Updated: 2024/03/28 10:37:51 by tturpin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,14 +39,15 @@ all: $(NAME)
 mlx:
 	make -sC $(MLX_PATH)
 
-$(LIBFT):
-	make bonus -C (LIBFTDIR)
 
-$(NAME): mlx $(OBJ) $(LIBFT)
+$(NAME): $(OBJ) $(LIBFT) $(MLX_LIB)
 	$(CC) $(OBJ) $(LIBFT) $(MLX_EX) $(FLAG) -o $(NAME)
 
 $(LIBFT):
 	make bonus -C $(LIBFTDIR)
+
+$(MLX_LIB):
+	make -C $(MLX_PATH)
 
 clean:
 	make clean -sC $(MLX_PATH)

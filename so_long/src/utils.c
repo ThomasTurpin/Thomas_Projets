@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:53:13 by tturpin           #+#    #+#             */
-/*   Updated: 2024/03/18 16:43:57 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/03/26 14:53:23 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,23 @@ char	*ft_strappend(char **s1, const char *s2)
 	ft_strlcat(str, s2, ft_strlen(*s1) + ft_strlen(s2) + 1);
 	free(*s1);
 	return (str);
+}
+
+void	victory(t_game *game)
+{
+	free_all(game);
+	ft_printf("VICTORY\n");
+	exit(1);
+}
+
+void	print_mouvements(t_game *game)
+{
+	char	*mouv;
+	char	*phrase;
+
+	mouv = ft_itoa(game->moove + 1);
+	phrase = ft_strjoin("Mouvements :", mouv);
+	ft_printf("%s\n", phrase);
+	free(mouv);
+	free(phrase);
 }

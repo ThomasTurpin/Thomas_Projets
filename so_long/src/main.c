@@ -6,19 +6,12 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:59:28 by tturpin           #+#    #+#             */
-/*   Updated: 2024/03/21 15:41:14 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/03/28 10:32:12 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	close_win(int keycode)
-{
-	ft_printf("Goodbye");
-	if (keycode)
-		exit(0);
-	return (0);
-}
 
 int	main(int argc, char **argv)
 {
@@ -33,7 +26,9 @@ int	main(int argc, char **argv)
 	init_sprite(game);
 	rendering_map(game);
 	mlx_hook(game->win, 2, 1L<<0, input, game);
-	mlx_hook(game->win, 17, 1L << 3, close_win, &game);
+	mlx_hook(game->win, 17, 1L << 3, close_win, game);
+	mlx_hook(game->win, 12, 1L<<15, rendering_map, game);
 	mlx_loop(game->mlx);
+	// free_all(game);
 	return (0);
 }

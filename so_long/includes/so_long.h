@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:59:32 by tturpin           #+#    #+#             */
-/*   Updated: 2024/03/21 13:15:27 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/03/28 07:48:51 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # define GROUND_XPM "./Sprite/Ground.xpm"
 # define COLLECTABLE_XPM "./Sprite/collectable.xpm"
 # define PLAYER_XPM "./Sprite/player.xpm"
+# define EXIT_OPEN_XPM "./Sprite/exit_open.xpm"
+# define EXIT_CLOSE_XPM "./Sprite/exit_close.xpm"
 
 typedef struct s_position
 {
@@ -56,11 +58,11 @@ typedef struct s_sprite
 typedef struct s_map
 {
 	char		**full;
-	int			rows;
-	int			columns;
-	int			collectible;
-	int			exit;
-	int			players;
+	size_t			rows;
+	size_t			columns;
+	size_t			collectible;
+	size_t			exit;
+	size_t			players;
 	t_position	player_pos;
 }				t_map;
 
@@ -80,24 +82,29 @@ typedef struct s_game
 }				t_game;
 
 void			check_argv(int argc, char **argv, t_game *game);
-void			msg_error(char *message, t_game *game);
-void			free_map(t_game *game);
 char			*ft_strappend(char **s1, const char *s2);
 void			init_map(t_game *game, char *argv);
 void			ft_check_for_empty_line(char *map, t_game *game);
 void			param_init(t_game *game);
 void			ft_check_map(t_game *game);
 void			ft_mlx_init(t_game *game);
+void			print_mouvements(t_game *game);
 
-t_sprite		ft_new_sprite(void *mlx, char *path);
+t_sprite		ft_new_sprite(void *mlx, char *path, t_game *game);
 void			init_sprite(t_game *game);
 void			put_sprite(t_game *game, t_sprite sprite, int line, int column);
 void			which_sprite(t_game *game, int y, int x);
 int				rendering_map(t_game *game);
 
-int				close_win(int keycode);
+int				close_win(t_game *game);
 
-void			player_moove(t_game *game, int new_y, int new_x);
+void			player_move(t_game *game, int new_y, int new_x);
 int				input(int keycode, t_game *game);
+void			victory(t_game *game);
+
+void			free_all(t_game *game);
+void			free_map(t_game *game);
+void			msg_error(char *message, t_game *game);
+void			destroy_image(t_game *game);
 
 #endif

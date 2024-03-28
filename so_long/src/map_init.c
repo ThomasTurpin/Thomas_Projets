@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 11:12:09 by tturpin           #+#    #+#             */
-/*   Updated: 2024/03/20 15:12:41 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/03/28 07:47:41 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	check_argv(int argc, char **argv, t_game *game)
 {
-	int	map_len;
+	size_t	map_len;
 
 	if (argc > 2)
 		msg_error("Too many arguments", game);
@@ -29,10 +29,10 @@ void	init_map(t_game *game, char *argv)
 {
 	char	*tmp;
 	char	*tmp_line;
-	int		fd_map;
+	size_t	fd_map;
 
 	fd_map = open(argv, O_RDONLY);
-	if (fd_map == -1)
+	if ((int)fd_map == -1)
 		msg_error("Can't open the map", game);
 	tmp = ft_strdup("");
 	game->map.rows = 0;
@@ -54,7 +54,7 @@ void	init_map(t_game *game, char *argv)
 
 void	ft_check_for_empty_line(char *map, t_game *game)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (map[0] == '\n')
