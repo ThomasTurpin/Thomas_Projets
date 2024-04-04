@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 10:08:21 by tturpin           #+#    #+#             */
-/*   Updated: 2024/03/28 07:46:53 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/03/28 15:44:16 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	player_move(t_game *game, int new_y, int new_x)
 	if (game->map.full[new_y][new_x] == GROUND
 		|| game->map.full[new_y][new_x] == COLLECT)
 	{
+		game->moove++;
 		print_mouvements(game);
 		if (game->map.full[new_y][new_x] == COLLECT)
 			game->map.collectible--;
@@ -47,6 +48,5 @@ void	player_move(t_game *game, int new_y, int new_x)
 		game->map.player_pos.y = new_y;
 		game->map.full[new_y][new_x] = PLAYER;
 	}
-	game->moove++;
 	rendering_map(game);
 }

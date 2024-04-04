@@ -6,13 +6,13 @@
 #    By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 16:59:36 by tturpin           #+#    #+#              #
-#    Updated: 2024/03/28 10:37:51 by tturpin          ###   ########.fr        #
+#    Updated: 2024/04/03 15:23:07 by tturpin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = cc
-FLAG = -Wall -Werror -Wextra
+FLAG = -Wall -Werror -Wextra -g3
 
 LIBFT = ./Libft/libft.a
 LIBFTDIR = ./Libft
@@ -24,7 +24,7 @@ MLX_LIB		=	$(addprefix $(MLX_PATH), $(MLX_FILE))
 MLX_EX		=	$(MLX_LIB) $(MLX_FLAG)
 
 C_FILE		= main.c error_free.c map_check.c map_init.c utils.c init_game.c \
-map_rendering.c input.c
+map_rendering.c input.c valid_path.c
 SRC_DIR		=	./src/
 INC_DIR		=	./includes/
 SRC			=	$(addprefix $(SRC_DIR),$(C_FILE))

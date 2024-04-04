@@ -1,0 +1,19 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    a faire                                            :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/04/03 08:13:48 by tturpin           #+#    #+#              #
+#    Updated: 2024/04/03 08:53:32 by tturpin          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+check path :
+- copier la map fait
+- partir du Player fait
+- checker si on as acces a la case du dessus puis a droite puis a gauche et en bas
+- si accessible, mettre la case comme un mur
+-(si case est un exit ou un collectible augmenter un compteur)
+- verifier si tout est accessible

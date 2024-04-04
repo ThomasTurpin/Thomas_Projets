@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:53:13 by tturpin           #+#    #+#             */
-/*   Updated: 2024/03/26 14:53:23 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/04/04 11:17:13 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	print_mouvements(t_game *game)
 	char	*mouv;
 	char	*phrase;
 
-	mouv = ft_itoa(game->moove + 1);
+	mouv = ft_itoa(game->moove);
 	phrase = ft_strjoin("Mouvements :", mouv);
 	ft_printf("%s\n", phrase);
 	free(mouv);

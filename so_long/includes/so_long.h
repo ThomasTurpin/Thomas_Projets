@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:59:32 by tturpin           #+#    #+#             */
-/*   Updated: 2024/03/28 07:48:51 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/04/04 11:15:38 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,15 @@
 # define EXIT_OPEN_XPM "./Sprite/exit_open.xpm"
 # define EXIT_CLOSE_XPM "./Sprite/exit_close.xpm"
 
+typedef struct s_path
+{
+	char		**tmp_map;
+	size_t		saw_collect;
+	size_t		saw_exit;
+	int			x;
+	int			y;
+}				t_path;
+
 typedef struct s_position
 {
 	int			y;
@@ -58,11 +67,11 @@ typedef struct s_sprite
 typedef struct s_map
 {
 	char		**full;
-	size_t			rows;
-	size_t			columns;
-	size_t			collectible;
-	size_t			exit;
-	size_t			players;
+	size_t		rows;
+	size_t		columns;
+	size_t		collectible;
+	size_t		exit;
+	size_t		players;
 	t_position	player_pos;
 }				t_map;
 
@@ -72,6 +81,7 @@ typedef struct s_game
 	void		*win;
 	int			moove;
 	t_map		map;
+	t_path		path;
 	bool		alloc;
 	t_sprite	wall;
 	t_sprite	ground;
@@ -79,6 +89,8 @@ typedef struct s_game
 	t_sprite	exit_op;
 	t_sprite	exit_cl;
 	t_sprite	player_sprite;
+	char		*tmp;
+	char		*tmp_line;
 }				t_game;
 
 void			check_argv(int argc, char **argv, t_game *game);
@@ -106,5 +118,12 @@ void			free_all(t_game *game);
 void			free_map(t_game *game);
 void			msg_error(char *message, t_game *game);
 void			destroy_image(t_game *game);
+
+int				is_valid(size_t row, size_t col, t_game *game);
+void			path_check(size_t row, size_t col, t_game *game);
+void			init_path(t_game *game);
+void			exit_coins(size_t x, size_t y, t_game *game);
+void			path(t_game *game);
+void	coordonate(t_game *game, int i, int row, int col);
 
 #endif
