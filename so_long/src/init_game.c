@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:17:06 by tturpin           #+#    #+#             */
-/*   Updated: 2024/04/03 10:21:59 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/04/08 14:15:52 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	param_init(t_game *game)
 	game->map.players = 0;
 	game->moove = 0;
 	game->map.columns = ft_strlen(game->map.full[0]);
+	game->path.saw_collect = 0;
+	game->path.saw_exit = 0;
 }
 
 void	ft_mlx_init(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:53:13 by tturpin           #+#    #+#             */
-/*   Updated: 2024/04/04 11:17:13 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/04/09 13:03:31 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,32 @@ void	print_mouvements(t_game *game)
 	ft_printf("%s\n", phrase);
 	free(mouv);
 	free(phrase);
+}
+int	is_valid(size_t row, size_t col, t_game *game)
+{
+	if (game->map.full[row][col] != WALL)
+		return (1);
+	else
+		return (0);
+}
+void	check_line(t_game *game)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = 0;
+	j = 0;
+	while (game->map.full[i][j])
+		j++;
+	i = 1;
+	while (game->map.full[i])
+	{
+		count = 0;
+		while (game->map.full[i][count])
+			count++;
+		if (count != j)
+			msg_error("all line have not the same size.", game);
+		i++;
+	}
 }

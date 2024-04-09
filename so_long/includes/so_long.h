@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:59:32 by tturpin           #+#    #+#             */
-/*   Updated: 2024/04/04 11:15:38 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/04/09 13:03:35 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ typedef struct s_game
 	t_sprite	exit_op;
 	t_sprite	exit_cl;
 	t_sprite	player_sprite;
-	char		*tmp;
-	char		*tmp_line;
 }				t_game;
 
 void			check_argv(int argc, char **argv, t_game *game);
@@ -123,7 +121,8 @@ int				is_valid(size_t row, size_t col, t_game *game);
 void			path_check(size_t row, size_t col, t_game *game);
 void			init_path(t_game *game);
 void			exit_coins(size_t x, size_t y, t_game *game);
-void			path(t_game *game);
-void	coordonate(t_game *game, int i, int row, int col);
+void			path(t_game *game, char *argv);
+void			coordonate(int i, size_t row, size_t col, t_game *game);
+void			check_line(t_game *game);
 
 #endif

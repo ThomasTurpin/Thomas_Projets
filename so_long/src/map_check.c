@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 11:12:05 by tturpin           #+#    #+#             */
-/*   Updated: 2024/03/28 10:25:38 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/04/08 15:18:01 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,9 @@ void	check_content(t_game *game)
 
 void	ft_check_map(t_game *game)
 {
-	check_rows(game);
+	check_line(game);
 	check_columns(game);
+	check_rows(game);
 	check_nb_content(game);
 	check_content(game);
 }

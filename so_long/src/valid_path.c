@@ -6,19 +6,11 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:12:56 by tturpin           #+#    #+#             */
-/*   Updated: 2024/04/04 11:16:56 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/04/08 10:35:44 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-int	is_valid(size_t row, size_t col, t_game *game)
-{
-	if (game->map.full[row][col] != WALL)
-		return (1);
-	else
-		return (0);
-}
 
 void	exit_coins(size_t x, size_t y, t_game *game)
 {
@@ -28,43 +20,45 @@ void	exit_coins(size_t x, size_t y, t_game *game)
 		game->path.saw_exit += 1;
 }
 
-
+void	coordonate(int i, size_t row, size_t col, t_game *game)
+{
+	if (i == 0)
+	{
+		game->path.x = row;
+		game->path.y = col + 1;
+	}
+	else if (i == 1)
+	{
+		game->path.x = row;
+		game->path.y = col - 1;
+	}
+	else if (i == 2)
+	{
+		game->path.x = row + 1;
+		game->path.y = col;
+	}
+	else
+	{
+		game->path.x = row - 1;
+		game->path.y = col;
+	}
+}
 
 void	path_check(size_t row, size_t col, t_game *game)
 {
 	int	i;
-	int	x;
-	int	y;
 
 	i = 0;
 	game->path.tmp_map[row][col] = WALL;
 	while (i < 4)
 	{
-		if (i == 0)
-		{
-			x = row;
-			y = col + 1;
-		}
-		else if (i == 1)
-		{
-			x = row;
-			y = col -1;
-		}
-		else if (i == 2)
-		{
-			x = row + 1;
-			y = col;
-		}
-		else
-		{
-			x = row -1;
-			y = col;
-		}
+		coordonate(i, row, col, game);
 		i++;
-		exit_coins(x, y, game);
-		if (is_valid(x, y, game))
-			path_check(x, y, game);
+		exit_coins(game->path.x, game->path.y, game);
+		if (is_valid(game->path.x, game->path.y, game))
+			path_check(game->path.x, game->path.y, game);
 	}
+
 }
 
 void	init_path(t_game *game)
@@ -87,12 +81,14 @@ void	init_path(t_game *game)
 	path_check(i, j, game);
 }
 
-void	path(t_game *game)
+void	path(t_game *game, char *argv)
 {
+	(void)argv;
 	init_path(game);
 	if (game->path.saw_collect != game->map.collectible)
 		msg_error("All the collectable are not reacheable", game);
 	else if (game->path.saw_exit != game->map.exit)
 		msg_error("The exit is not recheable", game);
+	free_map(game);
+	init_map(game, argv);
 }
-

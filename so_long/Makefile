@@ -6,13 +6,13 @@
 #    By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 16:59:36 by tturpin           #+#    #+#              #
-#    Updated: 2024/04/03 15:23:07 by tturpin          ###   ########.fr        #
+#    Updated: 2024/04/08 09:08:18 by tturpin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = cc
-FLAG = -Wall -Werror -Wextra -g3
+FLAG = -Wall -Werror -Wextra
 
 LIBFT = ./Libft/libft.a
 LIBFTDIR = ./Libft
