@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:11:03 by tturpin           #+#    #+#             */
-/*   Updated: 2024/03/27 12:11:55 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/04/11 11:30:21 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,5 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		while (new_len-- > 0)
 			sub[new_len] = s[start + new_len];
 	}
-
 	return (sub);
 }

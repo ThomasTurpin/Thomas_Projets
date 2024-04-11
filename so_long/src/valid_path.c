@@ -6,18 +6,25 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:12:56 by tturpin           #+#    #+#             */
-/*   Updated: 2024/04/08 10:35:44 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/04/11 08:31:54 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	exit_coins(size_t x, size_t y, t_game *game)
+int	exit_coins(size_t x, size_t y, t_game *game)
 {
 	if (game->path.tmp_map[x][y] == COLLECT)
+	{
 		game->path.saw_collect += 1;
-	else if (game->path.tmp_map[x][y] == EXIT)
+		return (1);
+	}
+	else if (game->path.tmp_map[x][y] == EXIT && game->path.saw_exit < 1)
+	{
 		game->path.saw_exit += 1;
+		return (0);
+	}
+	return (1);
 }
 
 void	coordonate(int i, size_t row, size_t col, t_game *game)
@@ -49,16 +56,17 @@ void	path_check(size_t row, size_t col, t_game *game)
 	int	i;
 
 	i = 0;
-	game->path.tmp_map[row][col] = WALL;
+	if (game->path.tmp_map[row][col] != EXIT)
+		game->path.tmp_map[row][col] = WALL;
 	while (i < 4)
 	{
 		coordonate(i, row, col, game);
+		if (exit_coins(game->path.x, game->path.y, game) == 0)
+			break ;
 		i++;
-		exit_coins(game->path.x, game->path.y, game);
 		if (is_valid(game->path.x, game->path.y, game))
 			path_check(game->path.x, game->path.y, game);
 	}
-
 }
 
 void	init_path(t_game *game)

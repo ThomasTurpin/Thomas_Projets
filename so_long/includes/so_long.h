@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:59:32 by tturpin           #+#    #+#             */
-/*   Updated: 2024/04/09 13:03:35 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/04/11 11:36:02 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void			destroy_image(t_game *game);
 int				is_valid(size_t row, size_t col, t_game *game);
 void			path_check(size_t row, size_t col, t_game *game);
 void			init_path(t_game *game);
-void			exit_coins(size_t x, size_t y, t_game *game);
+int				exit_coins(size_t x, size_t y, t_game *game);
 void			path(t_game *game, char *argv);
 void			coordonate(int i, size_t row, size_t col, t_game *game);
 void			check_line(t_game *game);

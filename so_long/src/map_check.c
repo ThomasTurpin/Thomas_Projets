@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 11:12:05 by tturpin           #+#    #+#             */
-/*   Updated: 2024/04/08 15:18:01 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/04/11 11:31:54 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	check_rows(t_game *game)
 			msg_error("Map must be surrended by wall", game);
 		i++;
 	}
-
 }
 
 static void	check_columns(t_game *game)
@@ -92,7 +91,6 @@ void	check_nb_content(t_game *game)
 
 void	check_content(t_game *game)
 {
-
 	if (game->map.collectible == 0)
 		msg_error("Invalid Map. There are no Coins!", game);
 	else if (game->map.exit != 1)

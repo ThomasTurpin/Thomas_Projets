@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 11:12:09 by tturpin           #+#    #+#             */
-/*   Updated: 2024/04/09 13:03:27 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/04/11 11:32:50 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ void	init_map(t_game *game, char *argv)
 	size_t	fd_map;
 
 	fd_map = open(argv, O_RDONLY);
-	if ((int)fd_map < 1)
+	if ((int)fd_map == -1 || (int)fd_map == 0)
 		msg_error("Can't open the map", game);
 	tmp = ft_strdup("");
-	game->map.rows = 0;
 	while (1)
 	{
 		tmp_line = get_next_line(fd_map);
@@ -43,12 +42,15 @@ void	init_map(t_game *game, char *argv)
 			break ;
 		tmp = ft_strappend(&tmp, tmp_line);
 		free(tmp_line);
-		game->map.rows++;
 	}
 	close(fd_map);
+	if (tmp[0] != WALL)
+	{
+		free(tmp);
+		msg_error("invalid Map", game);
+	}
 	ft_check_for_empty_line(tmp, game);
 	game->map.full = ft_split(tmp, '\n');
-	game->alloc = true;
 	free(tmp);
 }
 
