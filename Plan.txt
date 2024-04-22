@@ -1,0 +1,22 @@
+Comprendre:
+-Pipe
+-Fork
+-dup2
+-execve
+-pe/strerror
+-unlink
+-wait(waitpid)
+
+
+Pipe: "Tuyau" permetant a different prog de communiquer entre eux
+Fork: Lorsque fork est utiliser cela cree une copie du programme ou il
+est possible de faire des choses sans modifier le programme de base
+dup2: Permet de dupliauer un descripteur de fichier en specifiant aussi le fd
+ou la copie sera placer(a l'inverse de dup)
+-execve: permet de lancer une commande en remplacant le programme actuelle par
+l'execution de la commande specifie par son chemin
+-unlink: permet de supprimer un fichier une fois que tout les processus qui
+utilise ce fichier se termine
+-wait: permet de faire attendre le programme jusqu'a que le premier processus fils renvoie son statut de sortie
+-waitpid: la meme chose avec un argument suplementaire (PID : identifiant du processus fils) qui permet de specifie quel processus attendre
+
