@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:25:47 by tturpin           #+#    #+#             */
-/*   Updated: 2024/04/30 15:37:04 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:10:32 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	main(int argc, char **argv, char *envp[])
 	t_pipex	pipex;
 
 	init(&pipex, argv, argc);
-	pipex.paths = find_path(&pipex, envp);
-	pipex.cmd_path = ft_split(pipex.paths, ':');
 	pipex.pid1 = fork();
 	if (pipex.pid1 == 0)
 		first_child(envp, pipex, argv);

@@ -6,33 +6,37 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 09:20:35 by tturpin           #+#    #+#             */
-/*   Updated: 2024/04/22 10:30:24 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:10:56 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/pipex.h"
 
-char	*find_path(t_pipex *pipex, char	**envp)
+char	*find_path(char *cmd, char **envp)
 {
-	int	i;
-	int	error;
+	int		i;
+	char	**tmp_path;
+	char	*path;
+	char	*tmp;
 
 	i = 0;
-	error = 0;
-	while (envp[i])
+	while (envp[i] && ft_strncmp(envp[i], "PATH", 4) != 0)
 	{
-		if (ft_strncmp(envp[i], "PATH", 4) == 0)
-			error = 1;
 		i++;
 	}
-	if (error == 0)
+	if (!envp[i])
+		return (NULL);
+	tmp_path = ft_split(envp[i] + 5, ':');
+	i = 0;
+	while (tmp_path)
 	{
-		close(pipex->infile);
-		close(pipex->outfile);
-		close_pipe(pipex);
+		tmp = ft_strjoin(tmp_path[i], "/");
+		path = ft_strjoin(tmp, cmd);
+		free(tmp);
+		if (access(path, X_OK) == 0)
+			return (free_split(tmp_path), path);
+		free(path);
+		i++;
 	}
-	while (ft_strncmp("PATH", *envp, 4))
-		envp++;
-	return (*envp + 5);
-
+	return (free_split(tmp_path), NULL);
 }

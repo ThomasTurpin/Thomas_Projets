@@ -6,18 +6,17 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:12:32 by tturpin           #+#    #+#             */
-/*   Updated: 2024/04/30 13:41:38 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/06 16:23:36 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/pipex_bonus.h"
+#include "../header/pipex.h"
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_pipexb	pipexb;
+	(void) argv;
+	if (argc < 5)
+		msg("Not enough arguments");
 
-	init_params(&pipexb, argc, argv);
-	pipexb.pipe = malloc(2 * (sizeof(int) * pipexb.nb_cmd));
-	pipexb.paths = find_path(&pipexb, envp);
-	pipexb.cmd_path = ft_split(pipexb.paths, ':');
+	return (0);
 }
