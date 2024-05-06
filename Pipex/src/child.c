@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 08:52:24 by tturpin           #+#    #+#             */
-/*   Updated: 2024/04/22 11:42:54 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/04/30 15:41:09 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,21 @@ static char	*get_cmd(char **paths, char *cmd)
 
 	while (*paths)
 	{
+		ft_printf("%d\n", access(command, X_OK));
+		if (access(command, X_OK) == 0)
+			return (command);
 		tmp = ft_strjoin(*paths, "/");
 		command = ft_strjoin(tmp, cmd);
 		free(tmp);
-		if (access(command, X_OK) == 0)
-			return (command);
 		free(command);
 		paths++;
 	}
 	return (NULL);
+}
+
+void	exec_env(t_pipex *pipex, char **envp, char **argv)
+{
+
 }
 
 void	first_child(char **envp, t_pipex pipex, char **argv)
@@ -36,13 +42,14 @@ void	first_child(char **envp, t_pipex pipex, char **argv)
 	close(pipex.pipe[0]);
 	dup2(pipex.infile, 0);
 	pipex.cmd_args = ft_split(argv[2], ' ');
+	ft_printf("%s\n", pipex.cmd_args);
 	pipex.cmd = get_cmd(pipex.cmd_path, pipex.cmd_args[0]);
 	if (!pipex.cmd)
 	{
 		free_child(&pipex);
 		msg("Erreur cmd");
 	}
-	execve(pipex.cmd, pipex.cmd_args, envp);
+	exec_cmd(&pipex, envp);
 }
 
 void	second_child(char **envp, t_pipex pipex, char **argv)
@@ -58,4 +65,5 @@ void	second_child(char **envp, t_pipex pipex, char **argv)
 		msg("Erreur cmd");
 	}
 	execve(pipex.cmd, pipex.cmd_args, envp);
+	free_child(&pipex);
 }

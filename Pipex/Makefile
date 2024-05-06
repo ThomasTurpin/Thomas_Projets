@@ -6,26 +6,33 @@
 #    By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/15 08:10:18 by tturpin           #+#    #+#              #
-#    Updated: 2024/04/22 09:21:05 by tturpin          ###   ########.fr        #
+#    Updated: 2024/04/29 10:00:06 by tturpin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		= cc
 CFLAGS	= -Wall -Werror -Wextra
 NAME	= pipex
+NAME_BONUS = pipex_bonus
+INCLUDE_BONUS = pipex_bonus.h
 
 LIBFT = ./Libft/libft.a
 LIBFTDIR = ./Libft
 
 SRC_PATH = src/
 OBJ_PATH = obj/
+SRC_BONUS_PATH = src_bonus/
 
 SRC		= main.c error_free.c child.c init.c path.c
 
+SRC_BONUS = pipex_bonus.c path_bonus.c init_bonus.c here_doc.c error_free_bonus.c child_bonus.c
+
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
+SRCS_B = $(addprefix $(SRC_BONUS_PATH), $(SRC_BONUS))
 OBJ		= $(SRC:.c=.o)
 OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
-HEAD	= -I ./header/
+OBJS_BONUS = $(SRCS_B:.c=.o)
+HEAD	= -I ./header/pipex.h
 
 all: $(LIBFT) $(OBJ_PATH) $(NAME)
 
@@ -46,11 +53,15 @@ $(NAME): $(OBJS)
 clean:
 	make clean -C $(LIBFTDIR)
 	rm -rf $(OBJ_PATH)
+	rm -f ${OBJS_BONUS}
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(NAME_BONUS)
 	make fclean -C $(LIBFTDIR)
 
 re: fclean all
+
+bonus:${OBJS_BONUS} ${INCLUDE_BONUS}
+	cc ${CFLAGS} ${OBJS_BONUS} ${LIBFT} -o ${NAME_BONUS}
 
 .PHONY: all clean fclean re

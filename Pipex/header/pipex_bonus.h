@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 14:26:00 by tturpin           #+#    #+#             */
-/*   Updated: 2024/04/29 09:49:49 by tturpin          ###   ########.fr       */
+/*   Created: 2024/04/29 09:50:03 by tturpin           #+#    #+#             */
+/*   Updated: 2024/04/30 13:23:39 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include "../Libft/libft.h"
 # include <fcntl.h>
@@ -22,27 +22,23 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-typedef struct s_pipex
+typedef struct s_pipexb
 {
-	pid_t	pid1;
-	pid_t	pid2;
-	int		outfile;
+	pid_t	pid;
 	int		infile;
-	int		pipe[2];
+	int		outfile;
+	int		*pipe;
 	char	*paths;
 	char	**cmd_path;
 	char	**cmd_args;
 	char	*cmd;
-}			t_pipex;
+	int		nb_cmd;
+	int		nb_pipe;
+	int		here_doc;
+}			t_pipexb;
 
-void		msg(char *msg);
-void		msg_error(char *error);
-void		init(t_pipex *pipex, char **argv, int argc);
-void		close_pipe(t_pipex *pipex);
-char		*find_path(t_pipex *pipex, char **envp);
-void		first_child(char **envp, t_pipex pipex, char **argv);
-void		second_child(char **envp, t_pipex pipex, char **argv);
-void		free_main(t_pipex *pipex);
-void		free_child(t_pipex *pipex);
+void	init_params(t_pipexb *pipexb, int argc, char **argv);
+void	msg_error(char *error);
+char	*find_path(t_pipexb *pipexb, char **envp);
 
 #endif
