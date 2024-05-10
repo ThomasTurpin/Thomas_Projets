@@ -1,0 +1,11 @@
+/home/tturpin/bin/l
+/usr/local/sbin/l
+/usr/local/bin/l
+/usr/sbin/l
+/usr/bin/l
+/sbin/l
+/bin/l
+/usr/games/l
+/usr/local/games/l
+/snap/bin/l
+(null)

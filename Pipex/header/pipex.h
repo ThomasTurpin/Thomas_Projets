@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:26:00 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/06 15:11:50 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/07 10:39:12 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,11 @@ typedef struct s_pipex
 {
 	pid_t	pid1;
 	pid_t	pid2;
+	pid_t	pid;
 	int		outfile;
 	int		infile;
 	int		pipe[2];
-	char	*paths;
-	char	**cmd_path;
-	char	**cmd_args;
-	char	*cmd;
+	int		nb;
 }			t_pipex;
 
 void		msg(char *msg);
@@ -49,5 +47,12 @@ void		free_split(char **split);
 void		free_path(char *path);
 void		free_path2(char *path, char **split);
 void		exec_cmd(char **envp, char *argv);
+
+void		init2(t_pipex *pipex, char **argv, int argc);
+void		multi_child(int argc, char **argv, char **envp, t_pipex *pipex);
+void		choose_child(int argc, char **argv, t_pipex *pipex, char **envp);
+void		child1(char *argv, char **envp, t_pipex *pipex);
+void		child(char *argv, char **envp, t_pipex *pipex);
+void		child2(char *argv, char **envp, t_pipex *pipex);
 
 #endif

@@ -6,30 +6,11 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 08:52:24 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/06 15:10:41 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/10 08:11:50 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/pipex.h"
-
-// static char	*get_cmd(char **paths, char *cmd)
-// {
-// 	char	*tmp;
-// 	char	*command;
-
-// 	while (*paths)
-// 	{
-// 		// ft_printf("%d\n", access(command, X_OK));
-// 		if (access(command, X_OK) == 0)
-// 			return (command);
-// 		tmp = ft_strjoin(*paths, "/");
-// 		command = ft_strjoin(tmp, cmd);
-// 		free(tmp);
-// 		free(command);
-// 		paths++;
-// 	}
-// 	return (NULL);
-// }
 
 void	exec_cmd(char **envp, char *argv)
 {
@@ -54,6 +35,8 @@ void	exec_cmd(char **envp, char *argv)
 		if (!path)
 			free_path2(path, cmd);
 	}
+	if (access(path, F_OK) == -1)
+		msg("Error");
 	if (execve(path, cmd, envp) == -1)
 		free_path(path);
 }

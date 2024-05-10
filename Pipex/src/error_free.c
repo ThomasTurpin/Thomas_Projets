@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 08:47:13 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/06 15:09:58 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/07 14:07:05 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,4 @@ void	free_main(t_pipex *pipex)
 {
 	close(pipex->infile);
 	close(pipex->outfile);
-}
-
-void	free_child(t_pipex *pipex)
-{
-	int	i;
-
-	i = 0;
-	while (pipex->cmd_args[i])
-	{
-		free (pipex->cmd_args[i]);
-		i++;
-	}
-	free (pipex->cmd_args);
-	free(pipex->cmd);
 }

@@ -6,7 +6,7 @@
 #    By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/15 08:10:18 by tturpin           #+#    #+#              #
-#    Updated: 2024/05/06 16:09:54 by tturpin          ###   ########.fr        #
+#    Updated: 2024/05/07 13:56:34 by tturpin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,13 +23,17 @@ OBJ_PATH = obj/
 SRC_BONUS_PATH = src_bonus/
 
 SRC		= main.c error_free.c child.c init.c path.c utils.c
+SRC2 = error_free.c child.c init.c path.c utils.c
 
-SRC_BONUS = pipex_bonus.c path_bonus.c init_bonus.c here_doc.c error_free_bonus.c child_bonus.c
+SRC_BONUS = pipex_bonus.c here_doc.c child_bonus.c
 
+SRCS2 = $(addprefix $(SRC_PATH), $(SRC2))
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 SRCS_B = $(addprefix $(SRC_BONUS_PATH), $(SRC_BONUS))
 OBJ		= $(SRC:.c=.o)
+OBJ2 = $(SRC2:.c=.o)
 OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
+OBJS2	= $(addprefix $(OBJ_PATH), $(OBJ2))
 OBJS_BONUS = $(SRCS_B:.c=.o)
 HEAD	= -I ./header/pipex.h
 
@@ -62,6 +66,6 @@ re: fclean all
 
 bonus:${OBJS_BONUS}
 	make
-	${CC} ${CFLAGS} ${OBJS_BONUS} ${LIBFT} -o ${NAME_BONUS}
+	${CC} ${CFLAGS} ${OBJS_BONUS} ${OBJS2} ${LIBFT} -o ${NAME_BONUS}
 
 .PHONY: all clean fclean re
