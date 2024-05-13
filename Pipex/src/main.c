@@ -6,13 +6,13 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:25:47 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/07 10:18:01 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/13 09:04:16 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/pipex.h"
 
-int	main(int argc, char **argv, char *envp[])
+int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;
 
