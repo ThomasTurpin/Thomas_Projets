@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:52:34 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/13 11:55:03 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/16 13:32:01 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,12 @@ int	new_get_next_line(char **line)
 	return (r);
 }
 
-void	here_doc(int argc, char *limiter)
+void	here_doc(char *limiter)
 {
 	pid_t	herepid;
 	char	*line;
 	int		fd[2];
 
-	if (argc < 6)
-		msg("Not enough arguments");
 	if (pipe(fd) == -1)
 		msg_error("Error ");
 	herepid = fork();
@@ -69,7 +67,6 @@ void	here_doc(int argc, char *limiter)
 		{
 			if (ft_strcmp(line, limiter) == 0)
 				exit(0);
-			ft_putendl_fd(line, fd[1]);
 			free(line);
 		}
 		exit(1);
@@ -78,6 +75,6 @@ void	here_doc(int argc, char *limiter)
 	{
 		close(fd[1]);
 		dup2(fd[0], 0);
-		wait(NULL);
+		waitpid(herepid, NULL, 0);
 	}
 }

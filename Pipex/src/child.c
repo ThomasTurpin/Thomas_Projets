@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 08:52:24 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/10 08:11:50 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/16 12:50:18 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,17 @@ void	exec_cmd(char **envp, char *argv)
 		if (!path)
 			free_path2(path, cmd);
 	}
-	if (access(path, F_OK) == -1)
-		msg("Error");
+	// if (access(path, X_OK) == -1)
+	// 	free_path2(path, cmd);
 	if (execve(path, cmd, envp) == -1)
-		free_path(path);
+		free_path2(path, cmd);
+	// execve(path, cmd, envp);
 }
 
 void	first_child(char **envp, t_pipex pipex, char **argv)
 {
-	dup2(pipex.pipe[1], 1);
 	dup2(pipex.infile, 0);
+	dup2(pipex.pipe[1], 1);
 	close(pipex.pipe[0]);
 	exec_cmd(envp, argv[2]);
 }

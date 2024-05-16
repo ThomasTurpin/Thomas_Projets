@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:25:47 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/13 09:04:16 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/15 15:03:58 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int argc, char **argv, char **envp)
 
 	init(&pipex, argv, argc);
 	pipex.pid1 = fork();
+	if (pipex.pid1 == -1)
+		msg_error("Fork");
 	if (pipex.pid1 == 0)
 		first_child(envp, pipex, argv);
 	pipex.pid2 = fork();
