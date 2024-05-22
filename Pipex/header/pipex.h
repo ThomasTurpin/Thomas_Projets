@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:26:00 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/16 13:32:08 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/22 13:50:23 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
+# include <string.h>
 
 typedef struct s_pipex
 {
@@ -33,6 +34,7 @@ typedef struct s_pipex
 	int		infile;
 	int		pipe[2];
 	int		nb;
+	int		unlink;
 }			t_pipex;
 
 void		msg(char *msg);
@@ -41,7 +43,7 @@ void		init(t_pipex *pipex, char **argv, int argc);
 void		close_pipe(t_pipex *pipex);
 char		*find_path(char *cmd, char **envp);
 void		first_child(char **envp, t_pipex pipex, char **argv);
-void		second_child(char **envp, t_pipex pipex, char **argv);
+void		second_child(char **envp, t_pipex pipex, char **argv, int argc);
 void		free_main(t_pipex *pipex);
 void		free_split(char **split);
 void		free_path(char *path);

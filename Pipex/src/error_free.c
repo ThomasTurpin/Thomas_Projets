@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 08:47:13 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/07 14:07:05 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/22 14:07:41 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	msg(char *msg)
 void	msg_error(char *error)
 {
 	perror(error);
-	exit(1);
 }
 
 void	close_pipe(t_pipex *pipex)

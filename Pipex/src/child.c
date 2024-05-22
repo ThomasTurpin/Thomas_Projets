@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 08:52:24 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/16 12:50:18 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/22 12:00:19 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,8 @@ void	exec_cmd(char **envp, char *argv)
 		if (!path)
 			free_path2(path, cmd);
 	}
-	// if (access(path, X_OK) == -1)
-	// 	free_path2(path, cmd);
 	if (execve(path, cmd, envp) == -1)
 		free_path2(path, cmd);
-	// execve(path, cmd, envp);
 }
 
 void	first_child(char **envp, t_pipex pipex, char **argv)
@@ -50,10 +47,15 @@ void	first_child(char **envp, t_pipex pipex, char **argv)
 	exec_cmd(envp, argv[2]);
 }
 
-void	second_child(char **envp, t_pipex pipex, char **argv)
+void	second_child(char **envp, t_pipex pipex, char **argv, int argc)
 {
 	dup2(pipex.pipe[0], 0);
 	dup2(pipex.outfile, 1);
 	close(pipex.pipe[1]);
+	if (access(argv[argc - 1], W_OK) != 0)
+	{
+		msg_error("Outfile");
+		exit (1);
+	}
 	exec_cmd(envp, argv[3]);
 }

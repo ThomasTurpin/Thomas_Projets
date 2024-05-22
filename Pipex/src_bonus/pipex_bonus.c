@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:12:32 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/16 13:32:34 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/22 11:42:27 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	main(int argc, char **argv, char **envp)
 		pipex.nb = 3;
 		here_doc(argv[2]);
 		multi_child(argc, argv, envp, &pipex);
-
 	}
 	else
 	{

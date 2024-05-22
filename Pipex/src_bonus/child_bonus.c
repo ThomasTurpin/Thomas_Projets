@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 09:08:36 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/16 09:01:07 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/22 11:42:42 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	multi_child(int argc, char **argv, char **envp, t_pipex *pipex)
 {
+	if (pipex->nb == 3)
+		pipex->unlink = 1;
 	while (pipex->nb <= argc - 2)
 	{
 		if (pipe(pipex->pipe) == -1)

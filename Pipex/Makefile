@@ -6,7 +6,7 @@
 #    By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/15 08:10:18 by tturpin           #+#    #+#              #
-#    Updated: 2024/05/07 13:56:34 by tturpin          ###   ########.fr        #
+#    Updated: 2024/05/21 16:17:56 by tturpin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,10 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
+bonus: $(LIBFT) $(OBJ_PATH) $(NAME_BONUS)
+
+$(NAME_BONUS): $(OBJS_BONUS) $(OBJS2)
+	$(CC) $(CFLAGS) $(OBJS_BONUS) $(OBJS2) $(LIBFT) -o $(NAME_BONUS)
 
 clean:
 	make clean -C $(LIBFTDIR)
@@ -63,9 +67,5 @@ fclean: clean
 	make fclean -C $(LIBFTDIR)
 
 re: fclean all
-
-bonus:${OBJS_BONUS}
-	make
-	${CC} ${CFLAGS} ${OBJS_BONUS} ${OBJS2} ${LIBFT} -o ${NAME_BONUS}
 
 .PHONY: all clean fclean re
