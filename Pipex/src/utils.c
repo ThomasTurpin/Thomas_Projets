@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 09:02:23 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/22 11:42:04 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/23 13:57:21 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	free_split(char **split)
 void	free_path(char *path)
 {
 	free(path);
-	msg_error("Error1");
+	msg("Command/Path not found", 127);
 }
 
 void	free_path2(char *path, char **split)
 {
 	free(path);
 	free_split(split);
-	msg("Command/Path not found");
+	msg("Command not found", 127);
 }

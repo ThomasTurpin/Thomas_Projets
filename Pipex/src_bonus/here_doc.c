@@ -6,11 +6,16 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:52:34 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/22 09:01:20 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/23 15:11:39 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/pipex.h"
+
+// static void	print(char *str, int fd)
+// {
+// 	ft_putendl_fd(str, fd);
+// }
 
 int	ft_strcmp(char *s1, char *s2)
 {
@@ -46,35 +51,64 @@ int	new_get_next_line(char **line)
 		i++;
 		r = read(0, &l, 1);
 	}
-	buff[++i] = '\0';
+	buff[i] = '\0';
 	*line = buff;
 	return (r);
 }
 
-void	here_doc(char *limiter)
+void	here_doc(char *argv, t_pipex *pipex)
 {
-	pid_t	herepid;
-	char	*line;
-	int		fd[2];
+	int		file;
+	char	*buf;
 
-	if (pipe(fd) == -1)
-		msg_error("Error ");
-	herepid = fork();
-	if (herepid == 0)
+	file = open(".heredoc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0000644);
+	if (file < 0)
+		msg_error("Error");
+	while (1)
 	{
-		close(fd[0]);
-		while (new_get_next_line(&line))
-		{
-			if (ft_strcmp(line, limiter) == 0)
-				exit(0);
-			free(line);
-		}
-		exit(1);
+		write(1, "heredoc> ", 9);
+		if (new_get_next_line(&buf) < 0)
+			exit(1);
+		if (!ft_strncmp(argv, buf, ft_strlen(argv) + 1))
+			break ;
+		write(file, buf, ft_strlen(buf));
+		write(file, "\n", 1);
+		free(buf);
 	}
-	else
+	free(buf);
+	close(file);
+	pipex->infile = open(".heredoc_tmp", O_RDONLY);
+	if (pipex->infile < 0)
 	{
-		close(fd[1]);
-		dup2(fd[0], 0);
-		waitpid(herepid, NULL, 0);
+		unlink(".heredoc_tmp");
+		msg_error("Error");
 	}
 }
+// void	here_doc(char *limiter)
+// {
+// 	pid_t	herepid;
+// 	char	*line;
+// 	int		fd[2];
+
+// 	if (pipe(fd) == -1)
+// 		msg_error("Error ");
+// 	herepid = fork();
+// 	if (herepid == 0)
+// 	{
+// 		close(fd[0]);
+// 		while (new_get_next_line(&line))
+// 		{
+// 			if (ft_strcmp(line, limiter) == 0)
+// 				exit(0);
+// 			print(line, fd[1]);
+// 			free(line);
+// 		}
+// 		exit(1);
+// 	}
+// 	else
+// 	{
+// 		close(fd[1]);
+// 		dup2(fd[0], 0);
+// 		waitpid(herepid, NULL, 0);
+// 	}
+// }

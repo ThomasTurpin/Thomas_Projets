@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 08:52:24 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/22 12:00:19 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/23 16:43:57 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exec_cmd(char **envp, char *argv)
 	if (!cmd[0])
 	{
 		free_split(cmd);
-		msg("Command not found");
+		msg("Command not found", 127);
 	}
 	if (access(cmd[0], F_OK) == 0)
 	{
@@ -42,20 +42,21 @@ void	exec_cmd(char **envp, char *argv)
 void	first_child(char **envp, t_pipex pipex, char **argv)
 {
 	dup2(pipex.infile, 0);
+	close(pipex.outfile);
+	close(pipex.infile);
 	dup2(pipex.pipe[1], 1);
+	close(pipex.pipe[1]);
 	close(pipex.pipe[0]);
 	exec_cmd(envp, argv[2]);
 }
 
-void	second_child(char **envp, t_pipex pipex, char **argv, int argc)
+void	second_child(char **envp, t_pipex pipex, char **argv)
 {
 	dup2(pipex.pipe[0], 0);
+	close(pipex.pipe[0]);
 	dup2(pipex.outfile, 1);
+	close(pipex.outfile);
+	close(pipex.infile);
 	close(pipex.pipe[1]);
-	if (access(argv[argc - 1], W_OK) != 0)
-	{
-		msg_error("Outfile");
-		exit (1);
-	}
 	exec_cmd(envp, argv[3]);
 }

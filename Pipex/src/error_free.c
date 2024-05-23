@@ -6,16 +6,16 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 08:47:13 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/22 14:07:41 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/23 09:37:43 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/pipex.h"
 
-void	msg(char *msg)
+void	msg(char *msg, int code)
 {
-	ft_putendl_fd(msg, 2);
-	exit(1);
+	perror(msg);
+	exit(code);
 }
 
 void	msg_error(char *error)

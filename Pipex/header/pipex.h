@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:26:00 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/22 13:50:23 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/23 16:44:08 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
-# include <string.h>
 
 typedef struct s_pipex
 {
@@ -35,15 +35,16 @@ typedef struct s_pipex
 	int		pipe[2];
 	int		nb;
 	int		unlink;
+	int		status;
 }			t_pipex;
 
-void		msg(char *msg);
+void		msg(char *msg, int code);
 void		msg_error(char *error);
 void		init(t_pipex *pipex, char **argv, int argc);
 void		close_pipe(t_pipex *pipex);
 char		*find_path(char *cmd, char **envp);
 void		first_child(char **envp, t_pipex pipex, char **argv);
-void		second_child(char **envp, t_pipex pipex, char **argv, int argc);
+void		second_child(char **envp, t_pipex pipex, char **argv);
 void		free_main(t_pipex *pipex);
 void		free_split(char **split);
 void		free_path(char *path);
@@ -56,7 +57,8 @@ void		multi_child(int argc, char **argv, char **envp, t_pipex *pipex);
 void		choose_child(int argc, char **argv, t_pipex *pipex, char **envp);
 void		child1(char *argv, char **envp, t_pipex *pipex);
 void		child(char *argv, char **envp, t_pipex *pipex);
-void		here_doc(char *limiter);
+// void		here_doc(char *limiter);
+void		here_doc(char *argv, t_pipex *pipex);
 int			ft_strcmp(char *s1, char *s2);
 int			new_get_next_line(char **line);
 void		child2(char *argv, char **envp, t_pipex *pipex);

@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 09:08:36 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/22 11:42:42 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/05/23 15:21:32 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	multi_child(int argc, char **argv, char **envp, t_pipex *pipex)
 {
-	if (pipex->nb == 3)
-		pipex->unlink = 1;
 	while (pipex->nb <= argc - 2)
 	{
 		if (pipe(pipex->pipe) == -1)
@@ -29,8 +27,6 @@ void	multi_child(int argc, char **argv, char **envp, t_pipex *pipex)
 		close(pipex->pipe[1]);
 		pipex->nb++;
 	}
-	while (wait(NULL) != -1)
-		continue ;
 }
 
 void	choose_child(int argc, char **argv, t_pipex *pipex, char **envp)
@@ -49,6 +45,8 @@ void	choose_child(int argc, char **argv, t_pipex *pipex, char **envp)
 void	child1(char *argv, char **envp, t_pipex *pipex)
 {
 	dup2(pipex->infile, 0);
+	close(pipex->outfile);
+	close(pipex->infile);
 	dup2(pipex->pipe[1], 1);
 	close(pipex->pipe[0]);
 	close(pipex->pipe[1]);
@@ -60,12 +58,16 @@ void	child(char *argv, char **envp, t_pipex *pipex)
 	dup2(pipex->pipe[1], 1);
 	close(pipex->pipe[0]);
 	close(pipex->pipe[1]);
+	close(pipex->outfile);
+	close(pipex->infile);
 	exec_cmd(envp, argv);
 }
 
 void	child2(char *argv, char **envp, t_pipex *pipex)
 {
 	dup2(pipex->outfile, 1);
+	close(pipex->outfile);
+	close(pipex->infile);
 	close(pipex->pipe[0]);
 	close(pipex->pipe[1]);
 	exec_cmd(envp, argv);
