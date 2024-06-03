@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:12:32 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/23 15:10:39 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/06/03 13:42:34 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init2(t_pipex *pipex, char **argv, int argc)
 		msg_error("Infile");
 	pipex->outfile = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, 0644);
 	if (pipex->outfile < 0)
-		msg_error("Outfile");
+		msg("Outfile", 1);
 }
 
 void	init3(t_pipex *pipex, char **argv, int argc)
@@ -28,7 +28,7 @@ void	init3(t_pipex *pipex, char **argv, int argc)
 		msg("Not enough arguments", 1);
 	pipex->outfile = open(argv[argc - 1], O_CREAT | O_APPEND | O_RDWR, 0644);
 	if (pipex->outfile < 0)
-		msg_error("Outfile");
+		msg("Outfile", 1);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -42,7 +42,6 @@ int	main(int argc, char **argv, char **envp)
 	{
 		init3(&pipex, argv, argc);
 		pipex.nb = 3;
-		// here_doc(argv[2]);
 		here_doc(argv[2], &pipex);
 		multi_child(argc, argv, envp, &pipex);
 	}

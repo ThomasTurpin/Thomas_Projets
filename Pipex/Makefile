@@ -6,14 +6,14 @@
 #    By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/15 08:10:18 by tturpin           #+#    #+#              #
-#    Updated: 2024/05/23 16:56:03 by tturpin          ###   ########.fr        #
+#    Updated: 2024/05/31 16:32:49 by tturpin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		= cc
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -g3
 NAME	= pipex
-NAME_BONUS = pipex
+NAME_BONUS = pipex_bonus
 
 LIBFT = ./Libft/libft.a
 LIBFTDIR = ./Libft

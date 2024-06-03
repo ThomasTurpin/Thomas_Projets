@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:25:47 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/23 16:45:35 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/06/03 13:41:04 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv, char **envp)
 	init(&pipex, argv, argc);
 	pipex.pid1 = fork();
 	if (pipex.pid1 == -1)
-		msg_error("Fork");
+		msg("", 1);
 	if (pipex.pid1 == 0)
 		first_child(envp, pipex, argv);
 	pipex.pid2 = fork();
@@ -30,12 +30,6 @@ int	main(int argc, char **argv, char **envp)
 	while (waitpid(0, &pipex.status, 2) != -1)
 		continue ;
 	status = WEXITSTATUS(pipex.status);
-	if (access(argv[argc - 1], W_OK) != 0)
-	{
-		free_main(&pipex);
-		msg("Outfile", 1);
-	}
-	else
-		free_main(&pipex);
+	free_main(&pipex);
 	return (status);
 }

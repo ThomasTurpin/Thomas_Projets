@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:26:00 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/23 16:44:08 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/06/03 13:40:47 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void		multi_child(int argc, char **argv, char **envp, t_pipex *pipex);
 void		choose_child(int argc, char **argv, t_pipex *pipex, char **envp);
 void		child1(char *argv, char **envp, t_pipex *pipex);
 void		child(char *argv, char **envp, t_pipex *pipex);
-// void		here_doc(char *limiter);
 void		here_doc(char *argv, t_pipex *pipex);
 int			ft_strcmp(char *s1, char *s2);
 int			new_get_next_line(char **line);
