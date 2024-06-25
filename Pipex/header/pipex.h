@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:26:00 by tturpin           #+#    #+#             */
-/*   Updated: 2024/06/03 13:40:47 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/06/10 10:27:17 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ typedef struct s_pipex
 	int		nb;
 	int		unlink;
 	int		status;
+	int		here_doc;
 }			t_pipex;
 
+void		error_out(int code);
 void		msg(char *msg, int code);
 void		msg_error(char *error);
 void		init(t_pipex *pipex, char **argv, int argc);
@@ -52,6 +54,7 @@ void		free_path2(char *path, char **split);
 void		exec_cmd(char **envp, char *argv);
 
 void		init3(t_pipex *pipex, char **argv, int argc);
+void		choose_child1(int argc, char **argv, t_pipex *pipex, char **envp);
 void		init2(t_pipex *pipex, char **argv, int argc);
 void		multi_child(int argc, char **argv, char **envp, t_pipex *pipex);
 void		choose_child(int argc, char **argv, t_pipex *pipex, char **envp);

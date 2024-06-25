@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 08:52:24 by tturpin           #+#    #+#             */
-/*   Updated: 2024/06/03 13:48:58 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/06/06 13:29:06 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	second_child(char **envp, t_pipex pipex, char **argv)
 		close(pipex.infile);
 		close(pipex.pipe[1]);
 		close(pipex.outfile);
-		msg("", 1);
+		exit(1);
 	}
 	dup2(pipex.pipe[0], 0);
 	dup2(pipex.outfile, 1);
@@ -76,3 +76,32 @@ void	second_child(char **envp, t_pipex pipex, char **argv)
 	close(pipex.pipe[1]);
 	exec_cmd(envp, argv[3]);
 }
+
+// void	second_child(char **envp, t_pipex pipex, char **argv)
+// {
+// 	pipex.outfile = open(argv[4], O_TRUNC | O_CREAT | O_WRONLY, 0644);
+// 	if (pipex.outfile < 0)
+// 	{
+// 		close(pipex.pipe[0]);
+// 		close(pipex.pipe[1]);
+// 		msg_error("Error opening outfile");
+// 	}
+// 	if (dup2(pipex.pipe[0], STDIN_FILENO) < 0)
+// 	{
+// 		close(pipex.pipe[0]);
+// 		close(pipex.pipe[1]);
+// 		close(pipex.outfile);
+// 		msg_error("dup2 pipe read end error");
+// 	}
+// 	if (dup2(pipex.outfile, STDOUT_FILENO) < 0)
+// 	{
+// 		close(pipex.pipe[0]);
+// 		close(pipex.pipe[1]);
+// 		close(pipex.outfile);
+// 		msg_error("dup2 outfile error");
+// 	}
+// 	close(pipex.pipe[0]);
+// 	close(pipex.pipe[1]);
+// 	close(pipex.outfile);
+// 	exec_cmd(envp, argv[3]);
+// }

@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 09:08:36 by tturpin           #+#    #+#             */
-/*   Updated: 2024/06/03 13:42:52 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/06/10 10:29:59 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,13 @@ void	multi_child(int argc, char **argv, char **envp, t_pipex *pipex)
 		pipex->pid = fork();
 		if (pipex->pid == -1)
 			msg_error("Error ");
-		choose_child(argc, argv, pipex, envp);
+		if (pipex->here_doc == 1)
+		{
+			choose_child1(argc, argv, pipex, envp);
+			pipex->here_doc = 0;
+		}
+		else
+			choose_child(argc, argv, pipex, envp);
 		dup2(pipex->pipe[0], 0);
 		close(pipex->pipe[0]);
 		close(pipex->pipe[1]);

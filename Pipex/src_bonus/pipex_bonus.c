@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:12:32 by tturpin           #+#    #+#             */
-/*   Updated: 2024/06/03 13:42:34 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/06/10 10:28:43 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,19 @@ void	init3(t_pipex *pipex, char **argv, int argc)
 		msg("Outfile", 1);
 }
 
+void	choose_child1(int argc, char **argv, t_pipex *pipex, char **envp)
+{
+	if (pipex->pid == 0)
+	{
+		if (pipex->nb == 3)
+			child1(argv[pipex->nb], envp, pipex);
+		if (pipex->nb == argc - 2)
+			child2(argv[pipex->nb], envp, pipex);
+		else
+			child(argv[pipex->nb], envp, pipex);
+	}
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;
@@ -42,6 +55,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		init3(&pipex, argv, argc);
 		pipex.nb = 3;
+		pipex.here_doc = 1;
 		here_doc(argv[2], &pipex);
 		multi_child(argc, argv, envp, &pipex);
 	}

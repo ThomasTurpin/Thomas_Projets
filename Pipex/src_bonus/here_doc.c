@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:52:34 by tturpin           #+#    #+#             */
-/*   Updated: 2024/05/31 12:25:17 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/06/06 10:39:30 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	here_doc(char *argv, t_pipex *pipex)
 	{
 		if (new_get_next_line(&buf) < 0)
 			exit(1);
-		if (!ft_strncmp(argv, buf, ft_strlen(argv) + 1))
+		if (ft_strcmp(buf, argv) == 0)
 			break ;
 		write(file, buf, ft_strlen(buf));
 		write(file, "\n", 1);
