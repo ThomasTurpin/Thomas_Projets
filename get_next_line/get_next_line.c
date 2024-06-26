@@ -6,11 +6,14 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:05:47 by tturpin           #+#    #+#             */
-/*   Updated: 2023/12/23 13:31:51 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/06/26 14:57:25 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 static char	*get_line(int fd, char *buf, char *save)
 {
@@ -77,3 +80,23 @@ char	*get_next_line(int fd)
 	save = clean(line);
 	return (line);
 }
+
+// int	main(int argc, char **argv)
+// {
+// 	int		fd;
+// 	char	*line;
+
+// 	if (argc != 2)
+// 	{
+// 		printf("Usage: %s <filename>\n", argv[0]);
+// 		return (1);
+// 	}
+// 	fd = open(argv[1], O_RDONLY);
+// 	while ((line = get_next_line(fd)) != NULL)
+// 	{
+// 		printf("%s\n", line);
+// 		free(line);
+// 	}
+// 	close(fd);
+// 	return (0);
+// }
