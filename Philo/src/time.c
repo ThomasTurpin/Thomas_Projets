@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 11:30:41 by tturpin           #+#    #+#             */
-/*   Updated: 2024/07/02 07:58:18 by tturpin          ###   ########.fr       */
+/*   Created: 2024/10/08 11:38:42 by tturpin           #+#    #+#             */
+/*   Updated: 2024/10/08 11:53:21 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "../header/philo.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+long long	ft_get_time(void)
+{
+	struct timeval	t;
 
-
-
-int	env_cmd(char **env);
-int	ft_strcmp(char *s1, char *s2);
-int	pwd_no_arg(void);
-
-#endif
+	if (gettimeofday(&t, NULL))
+		return (-1);
+	return (((long long)t.tv_sec * 1000) + ((long long)t.tv_usec / 1000));
+}

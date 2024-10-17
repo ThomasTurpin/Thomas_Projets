@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:26:00 by tturpin           #+#    #+#             */
-/*   Updated: 2024/06/10 10:27:17 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/07/02 13:12:10 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ typedef struct s_pipex
 	int		infile;
 	int		pipe[2];
 	int		nb;
-	int		unlink;
+	int		err_code;
 	int		status;
 	int		here_doc;
+	int		outfile_err;
 }			t_pipex;
 
 void		error_out(int code);

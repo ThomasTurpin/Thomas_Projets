@@ -1,26 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   ft_printing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 11:30:41 by tturpin           #+#    #+#             */
-/*   Updated: 2024/07/02 07:58:18 by tturpin          ###   ########.fr       */
+/*   Created: 2024/10/08 11:05:09 by tturpin           #+#    #+#             */
+/*   Updated: 2024/10/08 11:05:32 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "../header/philo.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-
-
-int	env_cmd(char **env);
-int	ft_strcmp(char *s1, char *s2);
-int	pwd_no_arg(void);
-
-#endif
