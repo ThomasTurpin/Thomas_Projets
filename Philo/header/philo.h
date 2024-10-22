@@ -50,6 +50,36 @@ struct					s_data
 	t_philo				*philo;
 };
 
+typedef struct s_philo_var
+{
+	int	nb_philo;
+	long long	timetodie;
+	long long	timetoeat;
+	long long	timetosleep;
+	int			meallimit;
+};	t_philo_var;
+
+typedef struct t_philo_data
+{
+	t_philo_data	*data;
+	int				id;
+	long long		die_time;
+	long long		eat_time;
+	t_mutex			left_f;
+	t_mutex			right_f;
+	t_mutex			times_eaten_m;
+	int				times_eaten;
+}		t_philo_data;
+
+typedef struct s_philo_struct
+{
+	int	is_dead;
+	t_philo_data	*philos;
+	pthread_t		*threads;
+	int				count;
+}		t_philo_struct;
+
+
 void					error_msg(const char *msg);
 void					check_input(t_data *data, char **argv);
 void					init_data(t_philo *philo);
