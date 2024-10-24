@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 08:18:44 by tturpin           #+#    #+#             */
-/*   Updated: 2024/10/23 07:46:06 by tturpin          ###   ########.fr       */
+/*   Created: 2024/10/23 08:25:16 by tturpin           #+#    #+#             */
+/*   Updated: 2024/10/24 14:53:28 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,26 @@
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_philo_var		var;
+	t_philo_rout	philo;
 
-	if (argc == 5 || argc == 6)
+	if (init_var(argc, argv, &var))
 	{
-		check_input(&data, argv);
-		data.start = ft_get_time();
-		if (data.nb_philo == 1)
-		{
-			printf("Philo 1 take a fork");
-			usleep((data.start + data.time_to_die) * 1000);
-			printf("%lld %d died \n", ft_get_time() - data.start, 1);
-		}
-		else
-		{
-			init_data(data.philo);
-			philo_create(data.philo);
-			philo_join(data.philo);
-			end_free(data.philo);
-		}
+		printf("Wrong Arguments\n");
+		return (0);
 	}
-	else
+	var.time_starting = ft_get_time();
+	init_philo(&philo, &var);
+	if (var.nb_philo == 1)
 	{
-		error_msg("Not the right input.");
-		end_free(data.philo);
+		printf("%lld %d has taken a fork\n", ft_get_time() - var.time_starting,
+			1);
+		u_wait(ft_get_time() + var.timetodie);
+		printf("%lld %d died\n", ft_get_time() - var.time_starting, 1);
+		return (0);
 	}
+	philo_create(&philo);
+	philo_join(&philo);
+	free_all(&philo);
+	return (0);
 }
