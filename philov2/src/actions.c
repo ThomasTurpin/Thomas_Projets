@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 08:26:11 by tturpin           #+#    #+#             */
-/*   Updated: 2024/10/24 08:18:24 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/10/31 15:05:58 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ void	ft_die(t_philo_data *philo)
 {
 	u_wait(ft_get_time() + philo->data->timetodie);
 	ft_msg(philo, philo->id, "died");
+	philo->died = true;
 }

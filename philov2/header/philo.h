@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 08:24:23 by tturpin           #+#    #+#             */
-/*   Updated: 2024/10/24 15:04:37 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/10/31 15:04:29 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_philo_data
 	t_mutex				*second_fork;
 	t_mutex				*m;
 	int					times_eaten;
+	bool				died;
 	struct s_philo_rout	*d;
 }						t_philo_data;
 

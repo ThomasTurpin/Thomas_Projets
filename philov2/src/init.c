@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 08:26:04 by tturpin           #+#    #+#             */
-/*   Updated: 2024/10/24 15:06:39 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/10/31 15:10:32 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	init_data_philo(t_philo_data *philo, t_philo_var *var, int i)
 {
 	philo->id = i;
 	philo->times_eaten = 0;
-	philo->die_time =
+	philo->die_time = philo->data->time_starting + philo->data->timetoeat;
+	philo->died = false;
 	pthread_mutex_init(&philo->left_f, NULL);
 	if (i + 1 == var->nb_philo)
 		philo->right_f = &(philo - i)->left_f;
@@ -65,17 +66,19 @@ int	init_philo(t_philo_rout *philo_st, t_philo_var *var)
 	i = 0;
 	philo_st->philos = malloc(sizeof(t_philo_data) * var->nb_philo);
 	philo_st->threads = malloc(sizeof(pthread_t) * var->nb_philo);
-	philo_st->count = var->nb_philo;
-	pthread_mutex_init(&philo_st->msg, NULL);
 	if (!philo_st->philos || !philo_st->threads)
 	{
 		free_all(philo_st);
 		return (1);
 	}
+	philo_st->count = var->nb_philo;
+	pthread_mutex_init(&philo_st->msg, NULL);
 	while (i < var->nb_philo)
 	{
+		philo_st->philos[i].data = malloc(sizeof(t_philo_data));
 		philo_st->philos[i].m = &philo_st->msg;
 		philo_st->philos[i].d = philo_st;
+		philo_st->philos[i].data = var;
 		init_data_philo(&philo_st->philos[i], var, i);
 		i++;
 	}
@@ -89,7 +92,7 @@ void	philo_create(t_philo_rout *philo)
 	i = 0;
 	while (i < philo->count)
 	{
-		pthread_create(&philo->threads[i], NULL, philo_routine,
+		pthread_create(&philo->threads[i], NULL, &philo_routine,
 			(void *)&philo->philos[i]);
 		i++;
 	}
@@ -100,6 +103,7 @@ void	philo_join(t_philo_rout *philo)
 	int	i;
 
 	i = 0;
+	printf("%d\n", philo->count);
 	while (i < philo->count)
 	{
 		pthread_join(philo->threads[i], NULL);
