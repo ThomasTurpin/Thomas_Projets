@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 08:24:23 by tturpin           #+#    #+#             */
-/*   Updated: 2024/10/31 15:04:29 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/11/06 11:32:43 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_philo_rout
 	pthread_t			*threads;
 	t_mutex				msg;
 	int					count;
+	bool				finished;
 }						t_philo_rout;
 
 /*INIT VAR*/

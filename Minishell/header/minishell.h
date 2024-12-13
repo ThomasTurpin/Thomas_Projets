@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 08:26:08 by tturpin           #+#    #+#             */
-/*   Updated: 2024/11/06 11:36:27 by tturpin          ###   ########.fr       */
+/*   Created: 2024/11/26 14:41:34 by tturpin           #+#    #+#             */
+/*   Updated: 2024/11/26 14:48:19 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/philo.h"
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
-void	free_all(t_philo_rout *philo)
+# include <stdbool.h>
+# include <stdio.h>
+# include <unistd.h>
+
+typedef struct s_cmd
 {
-	int	i;
+	char			**cmd;/*cmd[0] = commande et cmd[1 ou plus] = arguments*/
+	int				fd_input;
+	int				fd_output;
+	bool			pipe;
+	struct s_cmd	*next;
+	struct s_cmd	*prev;
+}					t_cmd;
 
-	i = 0;
-	while (i < philo->count)
-	{
-		pthread_mutex_destroy(&philo->philos[i].left_f);
-		i++;
-	}
-	pthread_mutex_destroy(&philo->msg);
-	free(philo->threads);
-	free(philo->philos);
-}
+#endif

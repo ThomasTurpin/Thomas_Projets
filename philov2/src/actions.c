@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 08:26:11 by tturpin           #+#    #+#             */
-/*   Updated: 2024/10/31 15:05:58 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/11/08 15:48:21 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_eat(t_philo_data *philo)
 {
+	printf("COUCOU\n");
 	ft_msg(philo, philo->id, "has taken a fork");
 	pthread_mutex_lock(philo->second_fork);
 	ft_msg(philo, philo->id, "has taken a fork");
@@ -42,5 +43,5 @@ void	ft_die(t_philo_data *philo)
 {
 	u_wait(ft_get_time() + philo->data->timetodie);
 	ft_msg(philo, philo->id, "died");
-	philo->died = true;
+	// philo->died = true;
 }

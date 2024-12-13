@@ -6,7 +6,7 @@
 /*   By: tturpin <tturpin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 08:26:04 by tturpin           #+#    #+#             */
-/*   Updated: 2024/10/31 15:10:32 by tturpin          ###   ########.fr       */
+/*   Updated: 2024/11/08 13:56:00 by tturpin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,12 @@ int	init_philo(t_philo_rout *philo_st, t_philo_var *var)
 		return (1);
 	}
 	philo_st->count = var->nb_philo;
+	philo_st->finished = false;
 	pthread_mutex_init(&philo_st->msg, NULL);
+	philo_st->philos->data = malloc(sizeof(t_philo_data) * philo_st->count);
 	while (i < var->nb_philo)
 	{
-		philo_st->philos[i].data = malloc(sizeof(t_philo_data));
+		// philo_st->philos[i].data = malloc(sizeof(t_philo_data));
 		philo_st->philos[i].m = &philo_st->msg;
 		philo_st->philos[i].d = philo_st;
 		philo_st->philos[i].data = var;
@@ -92,7 +94,7 @@ void	philo_create(t_philo_rout *philo)
 	i = 0;
 	while (i < philo->count)
 	{
-		pthread_create(&philo->threads[i], NULL, &philo_routine,
+		pthread_create(&philo->threads[i], NULL, philo_routine,
 			(void *)&philo->philos[i]);
 		i++;
 	}
@@ -103,8 +105,7 @@ void	philo_join(t_philo_rout *philo)
 	int	i;
 
 	i = 0;
-	printf("%d\n", philo->count);
-	while (i < philo->count)
+	while (i  < philo->count)
 	{
 		pthread_join(philo->threads[i], NULL);
 		i++;
